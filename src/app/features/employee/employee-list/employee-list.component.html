@@ -1,0 +1,16 @@
+<div *ngFor="let Employee of listEmployees">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">{{ Employee.idEmployee }}</p>
+        <h5 class="card-title">{{ Employee.nom }}</h5>
+        <p class="card-text">{{ Employee.prenom }}</p>
+        <p class="card-text">{{ Employee.password }}</p>
+        <p class="card-text">{{ Employee.salaire }}</p>
+        <p class="card-text">{{ Employee.soldeConges }}</p>
+        <p class="card-text">{{ Employee.equipe }}</p>
+        <p class="card-text">{{ Employee.manager }}</p>
+        <!-- <a [routerLink]="['/employee', Employee.id]" class="btn btn-primary">View</a> -->
+        </div>
+    </div>
+  
+</div>
