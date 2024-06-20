@@ -1,0 +1,39 @@
+<!-- src/app/features/event/event-list/event-list.component.html -->
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="calendar-header">
+          <button mat-icon-button (click)="previousMonth()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <span>{{ viewDate | date: 'MMMM yyyy' }}</span>
+          <button mat-icon-button (click)="nextMonth()">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+        <mwl-calendar-month-view
+          [viewDate]="viewDate"
+          [events]="events"
+          (dayClicked)="dayClicked($event.day)">
+        </mwl-calendar-month-view>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col-md-12" *ngIf="selectedDate">
+        <h3>Events for {{ selectedDate | date: 'fullDate' }}</h3>
+        <div *ngIf="selectedDateEvents.length > 0; else noEvents">
+          <div *ngFor="let event of selectedDateEvents" class="event-details">
+            <p><strong>Name:</strong> {{ event.nomEvent }}</p>
+            <p><strong>Start Date:</strong> {{ event.dateDebutEvent | date: 'fullDate' }}</p>
+            <p><strong>End Date:</strong> {{ event.dateFinEvent | date: 'fullDate' }}</p>
+            <p><strong>Type:</strong> {{ event.typeEvent }}</p>
+          </div>
+        </div>
+        <ng-template #noEvents>
+          <p>No events for this date.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  

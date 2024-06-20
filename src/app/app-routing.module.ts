@@ -20,6 +20,10 @@ export const Approutes: Routes = [
       {
         path: 'component',
         loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
+      },
+      {
+        path: 'event',
+        loadChildren: () => import('./features/event/event.module').then(m => m.EventModule)
       }
     ]
   },
