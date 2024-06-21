@@ -22,12 +22,16 @@ import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { DepartementComponent } from './features/departement/departement.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SpinnerComponent,
+    
+    
   ],
   imports: [
     CommonModule,
