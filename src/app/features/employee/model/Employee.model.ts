@@ -21,4 +21,9 @@ export enum Typeconge {
     Modifier = 'modifer',
     Supprimer = 'supprimer'
   }
+  export enum EtatConge {
+      Accepte = 'accepte',
+      Refuse = 'refuse',
+       EnAttente = 'enAttente'
+  }
   
