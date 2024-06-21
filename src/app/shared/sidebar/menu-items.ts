@@ -8,7 +8,16 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     extralink: false,
     submenu: []
+  },
+  {
+    path: '/conge',
+    title: 'Conge',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
   }
+  
   // {
   //   path: '/dashboard',
   //   title: 'Dashboard',
