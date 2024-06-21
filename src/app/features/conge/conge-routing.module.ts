@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CongelistComponent } from './congelist/congelist.component';
 
 const routes: Routes = [ 
-  { path: '', component: CongelistComponent },];
+  { path: '', component: CongelistComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

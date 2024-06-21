@@ -82,14 +82,14 @@ export const ROUTES: RouteInfo[] = [
   //   extralink: false,
   //   submenu: []
   // },
-  // {
-  //   path: '/component/table',
-  //   title: 'Table',
-  //   icon: 'bi bi-layout-split',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: []
-  // },
+   ,{
+     path: '/component/table',
+     title: 'Table',
+     icon: 'bi bi-layout-split',
+     class: '',
+     extralink: false,
+     submenu: []
+   },
   // {
   //   path: '/about',
   //   title: 'About',
