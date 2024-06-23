@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchemployeebyidComponent } from './searchemployeebyid.component';
+import { SearchEmployeeByIdComponent } from './searchemployeebyid.component';
 
 describe('SearchemployeebyidComponent', () => {
-  let component: SearchemployeebyidComponent;
-  let fixture: ComponentFixture<SearchemployeebyidComponent>;
+  let component: SearchEmployeeByIdComponent;
+  let fixture: ComponentFixture<SearchEmployeeByIdComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SearchemployeebyidComponent]
+      declarations: [SearchEmployeeByIdComponent]
     });
-    fixture = TestBed.createComponent(SearchemployeebyidComponent);
+    fixture = TestBed.createComponent(SearchEmployeeByIdComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
