@@ -18,6 +18,10 @@ export class EmployeeService {
   getEmployeeById(id: number): Observable<Employee> {
     return this.http.get<Employee>(`${this.apiUrl}/${id}`);
   }
+  getEmployeeByName(nom: string): Observable<Employee> {
+    return this.http.get<Employee>(`${this.apiUrl}/search?nom=${nom}`);
+  }
+  
 
 
   createEmployee(employee: Employee): Observable<Employee> {

@@ -39,6 +39,11 @@ export class EmployeeListComponent {
       console.error('Error fetching employees:', error);
     });
   }
+  getEmployeeByName(nom: string): void {
+    this.employeeService.getEmployeeByName(nom).subscribe(data => {
+      console.log(data);
+    });
+  }
 
   getEmployeeById(id: number): void {
     this.employeeService.getEmployeeById(id).subscribe(data => {
