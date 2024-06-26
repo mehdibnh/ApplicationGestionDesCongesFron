@@ -15,5 +15,7 @@ export class CongeService {
     return this.http.post<CongeModule>(`${this.apiUrl}/ajouter`, conge);
   }
 
-  // autres méthodes du service...
+  recupererListeConge(): Observable<CongeModule[]> {
+    return this.http.get<CongeModule[]>(`${this.apiUrl}/liste`);
+  }
 }

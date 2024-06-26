@@ -1,28 +1,35 @@
-<form class="custom-form mt-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group">
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-start mb-3">
+      <h2>Demande de Congé</h2>
+      <button type="button" class="btn btn-primary" [routerLink]="['../../conge']">Mes Conges</button>
+    </div>
+    <form class="custom-form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
         <label for="dateDebut">Date de Début</label>
         <input type="date" class="form-control" id="dateDebut" name="dateDebut" [(ngModel)]="newConge.dateDebut" required>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="dateFin">Date de Fin</label>
         <input type="date" class="form-control" id="dateFin" name="dateFin" [(ngModel)]="newConge.dateFin">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="typeConge">Type de Congé</label>
         <select class="form-control" id="typeConge" name="typeConge" [(ngModel)]="newConge.typeConge" required>
-            <option value="RTT">RTT</option>
-            <option value="CongesPayes">Congés Payés</option>
-            <option value="Maladie">Maladie</option>
-            <option value="SansSolde">Sans Solde</option>
+          <option value="RTT">RTT</option>
+          <option value="CongesPayes">Congés Payés</option>
+          <option value="Maladie">Maladie</option>
+          <option value="SansSolde">Sans Solde</option>
         </select>
-    </div>
-    <div class="form-group">
-        <label for="certifie">Certifiée</label>
+      </div>
+      <div class="form-group">
+        <label for="certifie">Certifié</label>
         <select class="form-control" id="certifie" name="certifie" [(ngModel)]="newConge.certifie" required>
-            <option [value]="true">Oui</option>
-            <option [value]="false">Non</option>
+          <option [value]="true">Oui</option>
+          <option [value]="false">Non</option>
         </select>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-success btn-space">Soumettre</button>
-</form>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Soumettre</button>
+    </form>
+  </div>
+  
