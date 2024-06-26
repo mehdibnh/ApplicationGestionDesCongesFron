@@ -7,7 +7,7 @@ import { CongemodifierComponent } from './congemodifier/congemodifier.component'
 
 const routes: Routes = [ 
   { path: '', component: CongelistComponent },
-  { path: 'congemodifier', component: CongemodifierComponent },
+  { path: 'congemodifier/:id', component: CongemodifierComponent },
   { path: 'congelist', component: CongelistComponent },
   { path: 'congedemande', component: CongedemandeComponent },
   

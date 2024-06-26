@@ -1,46 +1,48 @@
 <div class="container">
-    <div class="row my-3 align-items-center">
-      <div class="col">
-        <h2>Mes Congés</h2>
-      </div>
-      <div class="col-auto">
-        <button class="btn btn-primary" [routerLink]="['congedemande']">Envoyer une demande</button>
-      </div>
+  <div class="row my-3 align-items-center">
+    <div class="col">
+      <h2>Les Congés</h2>
     </div>
-    
-    <div *ngIf="conges.length > 0; else noConges">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Type de Congé</th>
-            <th>Date de Début</th>
-            <th>Date de Fin</th>
-            <th>Certifié</th>
-            <th>Status</th>
-            <th>Modifier</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let conge of conges">
-            <td>{{ conge.typeConge }}</td>
-            <td>{{ conge.dateDebut | date: 'fullDate' }}</td>
-            <td>{{ conge.dateFin | date: 'fullDate' }}</td>
-            <td>{{ conge.certifie ? 'Oui' : 'Non' }}</td>
-            <td>{{ conge.statut }}</td>
-            <td>
-              <button 
-                type="button" 
-                class="btn btn-warning" 
-                [disabled]="conge.statut !== 'enattente'">
-                Modifier
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-auto">
+      <button class="btn btn-primary" [routerLink]="['congedemande']">Envoyer une demande</button>
     </div>
-    <ng-template #noConges>
-      <p>Pas de congés disponibles.</p>
-    </ng-template>
   </div>
-  
+
+  <div *ngIf="conges.length > 0; else noConges">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom de l'employer</th>
+          <th>Type de Congé</th>
+          <th>Date de Début</th>
+          <th>Date de Fin</th>
+          <th>Certifié</th>
+          <th>Status</th>
+          <th>Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conge of conges">
+          <td>{{ conge.idConge }}</td>
+          <td>{{ conge.typeConge }}</td>
+          <td>{{ conge.dateDebut | date: 'fullDate' }}</td>
+          <td>{{ conge.dateFin | date: 'fullDate' }}</td>
+          <td>{{ conge.certifie ? 'Oui' : 'Non' }}</td>
+          <td>{{ conge.statut }}</td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-warning" 
+              [routerLink]="['/congemodifier', conge.idConge]"
+              [disabled]="conge.statut !== 'enattente'">
+              Modifier
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noConges>
+    <p>Pas de congés disponibles.</p>
+  </ng-template>
+</div>

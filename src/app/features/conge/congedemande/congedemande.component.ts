@@ -15,6 +15,7 @@ export class CongedemandeComponent {
     typeConge: TypeConge.RTT,
     certifie: false
   };
+  
 
   constructor(private congeService: CongeService) { }
 

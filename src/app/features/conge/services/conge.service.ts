@@ -16,6 +16,13 @@ export class CongeService {
   }
 
   recupererListeConge(): Observable<CongeModule[]> {
-    return this.http.get<CongeModule[]>(`${this.apiUrl}/liste`);
+    return this.http.get<CongeModule[]>(`${this.apiUrl}/liste`); 
+  }
+  recupererCongeParId(id: number): Observable<CongeModule> {
+    return this.http.get<CongeModule>(`${this.apiUrl}/${id}`);
+  }
+
+  modifierConge(id: number, conge: CongeModule): Observable<CongeModule> {
+    return this.http.put<CongeModule>(`${this.apiUrl}/modifier/${id}`, conge);
   }
 }
