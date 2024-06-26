@@ -7,5 +7,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./congelist.component.scss']
 })
 export class CongelistComponent {
+trow: any;
 }
 

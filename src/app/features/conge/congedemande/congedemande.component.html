@@ -1,81 +1,28 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page avec Boutons et Formulaire</title>
-    <!-- Lien vers Bootstrap CSS -->
-      <style>
-        .custom-form {
-            max-width: 30%;
-            display: block; 
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 4%;
-        }
-        .custom-form button {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-space {
-            margin-right: 15px; /* Vous pouvez ajuster cette valeur pour plus ou moins d'espace */
-            background-color: #009efb;
-            color: white;
-            border-color: #009efb;
-        }
-        .btn-space:hover {
-            background-color: #007bbd; /* Couleur légèrement plus sombre au survol */
-            border-color: #007bbd;
-        }
-    </style>
-</head>
-<body>
-    <div class="container text-center mt-5">
-        <h3 class="mb-4">Envoyer une demande de congé</h3>
-        <button type="button"  class="btn btn-primary btn-space" [routerLink]="['../../conge'] ">Mes Conge</button>
-        <button type="button" class="btn btn-primary btn-space" [routerLink]="['../congemodifier']">Modifer Une Demande</button>
-        </div>
-
-    <form class="custom-form mt-5">
-        <div class="form-group">
-            <label for="dateDebut">Date de Début</label>
-            <input type="date" class="form-control" id="dateDebut" name="dateDebut">
-        </div>
-        <div class="form-group">
-            <label for="dateFin">Date de Fin</label>
-            <input type="date" class="form-control" id="dateFin" name="dateFin">
-        </div>
-        <div class="form-group">
-            <label for="typeConge">Type de Congé</label>
-            <select class="form-control" id="typeConge" name="typeConge">
-                <option value="annuel">Annuel</option>
-                <option value="maladie">Maladie</option>
-                <option value="maternité">Maternité</option>
-                <option value="parental">Parental</option>
-                <option value="sabbatique">Sabbatique</option>
-                <option value="formation">Formation</option>
-                <option value="sans_solde">Sans Solde</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="certifie">Certifiée</label>
-            <select class="form-control" id="certifie" name="certifie">
-                <option value="oui">Oui</option>
-                <option value="non">Non</option>
-            </select>
-        </div>
-        <br>
-        <button type="submit" class="btn btn-success btn-space">Soumettre</button>
-    </form>
-
-    <!-- Lien vers Bootstrap JS et jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
-
-
-
+<form class="custom-form mt-5" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div class="form-group">
+        <label for="dateDebut">Date de Début</label>
+        <input type="date" class="form-control" id="dateDebut" name="dateDebut" [(ngModel)]="newConge.dateDebut" required>
+    </div>
+    <div class="form-group">
+        <label for="dateFin">Date de Fin</label>
+        <input type="date" class="form-control" id="dateFin" name="dateFin" [(ngModel)]="newConge.dateFin">
+    </div>
+    <div class="form-group">
+        <label for="typeConge">Type de Congé</label>
+        <select class="form-control" id="typeConge" name="typeConge" [(ngModel)]="newConge.typeConge" required>
+            <option value="RTT">RTT</option>
+            <option value="CongesPayes">Congés Payés</option>
+            <option value="Maladie">Maladie</option>
+            <option value="SansSolde">Sans Solde</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="certifie">Certifiée</label>
+        <select class="form-control" id="certifie" name="certifie" [(ngModel)]="newConge.certifie" required>
+            <option [value]="true">Oui</option>
+            <option [value]="false">Non</option>
+        </select>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success btn-space">Soumettre</button>
+</form>
