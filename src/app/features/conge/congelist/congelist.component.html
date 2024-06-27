@@ -16,26 +16,47 @@
           <th>Type de Congé</th>
           <th>Date de Début</th>
           <th>Date de Fin</th>
-          <th>Certifié</th>
+          <th>Nombre des jour(s)</th>
           <th>Status</th>
           <th>Modifier</th>
+          <th>Accecpter</th>
+          <th>Refuser</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let conge of conges">
-          <td>{{ conge.idConge }}</td>
+          <td></td>
           <td>{{ conge.typeConge }}</td>
-          <td>{{ conge.dateDebut | date: 'fullDate' }}</td>
-          <td>{{ conge.dateFin | date: 'fullDate' }}</td>
-          <td>{{ conge.certifie ? 'Oui' : 'Non' }}</td>
+          <td>{{ conge.dateDebut | date: 'longDate' }}</td>
+          <td>{{ conge.dateFin | date: 'longDate' }}</td>
+          <td>{{ conge.nombreDeJours }}</td>
           <td>{{ conge.statut }}</td>
           <td>
             <button 
               type="button" 
               class="btn btn-warning" 
-              [routerLink]="['congemodifier', conge.idConge]"
+              [routerLink]="['congemodifier', conge.idConge ?? 0]"
               [disabled]="conge.statut !== 'enattente'">
               Modifier
+            </button>
+          </td>
+          <td>
+            <button 
+              *ngIf="conge.idConge !== undefined"
+              type="button" 
+              class="btn btn-success" 
+              (click)="accepterConge(conge.idConge)"   
+              [disabled]="conge.statut !== 'enattente'">
+              Accecpter
+            </button>
+          </td>
+          <td>
+            <button 
+              type="button" 
+              class="btn btn-danger" 
+              (click)="refuseConge(conge.idConge)"
+              [disabled]="conge.statut !== 'enattente'">
+              Refuser
             </button>
           </td>
         </tr>

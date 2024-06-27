@@ -18,6 +18,29 @@ export class CongelistComponent implements OnInit {
       this.conges = data;
     });
   }
+
+ accepterConge(idConge: number): void {
+  this.congeService.accepterConge(idConge).subscribe(updatedConge => {
+    const congeIndex = this.conges.findIndex(conge => conge.idConge === idConge);
+    if (congeIndex !== -1) {
+      this.conges[congeIndex] = updatedConge;
+    }
+  });
 }
+refuseConge(idConge: number | undefined): void {
+  if (idConge !== undefined) {
+    this.congeService.refuseConge(idConge).subscribe(updatedConge => {
+      // Mettre à jour le statut du congé dans la liste
+      const congeIndex = this.conges.findIndex(conge => conge.idConge === idConge);
+      if (congeIndex !== -1) {
+        this.conges[congeIndex] = updatedConge;
+      }
+    });
+  } else {
+    console.error('idConge is undefined');
+  }
+}
+}
+
 
 

@@ -25,4 +25,12 @@ export class CongeService {
   modifierConge(id: number, conge: CongeModule): Observable<CongeModule> {
     return this.http.put<CongeModule>(`${this.apiUrl}/modifier/${id}`, conge);
   }
+  accepterConge(idConge: number): Observable<CongeModule> {
+    return this.http.put<CongeModule>(`${this.apiUrl}/accepter/${idConge}`, {});
+  }
+  refuseConge(idConge: number): Observable<CongeModule> {
+    return this.http.put<CongeModule>(`${this.apiUrl}/refuse/${idConge}`, {});
+  }
+
+
 }

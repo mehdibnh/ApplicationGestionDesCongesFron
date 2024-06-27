@@ -1,6 +1,7 @@
 
 
-export interface CongeModule { 
+export interface CongeModule {
+ 
   
     idConge?: number;
     dateDebut?: Date;
@@ -8,8 +9,16 @@ export interface CongeModule {
     nombreDeJours?: number;
     statut?: Statut;
     typeConge?: TypeConge;
-    certifie?: boolean;  // Notez que j'ai corrigé l'accent pour une meilleure pratique
+    certifie?: boolean;  
+    employee?: any;
  
+}
+
+interface employee {
+  id: number;
+  nom: 'Maher';
+  prenom: string;
+  // ... autres propriétés de l'utilisateur
 }
 export enum Statut {
   EnAttente = 'enattente',
@@ -24,5 +33,5 @@ export enum Statut {
   SansSolde = 'SansSolde',
   Maternite = 'Maternite',
   Paternite = 'Paternite',
-  Sabbatique= 'Sabbatique'
+  Sabbatique= 'abbatique'
   }
