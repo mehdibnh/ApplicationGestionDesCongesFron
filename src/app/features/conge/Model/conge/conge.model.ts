@@ -19,10 +19,10 @@ export enum Statut {
 }
 
  export enum TypeConge {
-  Annuel = 'annuel',
-  Maladie = 'maladie',
-  SansSolde = 'sanssolde',
-  Maternite = 'maternite',
-  Paternite = 'paternite',
-  Sabbatique= 'sabbatique'
+  Annuel = 'Annuel',
+  Maladie = 'Maladie',
+  SansSolde = 'SansSolde',
+  Maternite = 'Maternite',
+  Paternite = 'Paternite',
+  Sabbatique= 'Sabbatique'
   }
