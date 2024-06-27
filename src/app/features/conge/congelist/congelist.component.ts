@@ -30,11 +30,21 @@ export class CongelistComponent implements OnInit {
 refuseConge(idConge: number | undefined): void {
   if (idConge !== undefined) {
     this.congeService.refuseConge(idConge).subscribe(updatedConge => {
-      // Mettre à jour le statut du congé dans la liste
       const congeIndex = this.conges.findIndex(conge => conge.idConge === idConge);
       if (congeIndex !== -1) {
         this.conges[congeIndex] = updatedConge;
       }
+    });
+  } else {
+    console.error('idConge is undefined');
+  }
+}
+supprime(idConge: number | undefined): void {
+  if (idConge !== undefined) {
+    this.congeService.supprimeConge(idConge).subscribe(() => {
+      this.conges = this.conges.filter(conge => conge.idConge !== idConge);
+    }, (error) => {
+      console.error('Erreur lors de la suppression du congé', error);
     });
   } else {
     console.error('idConge is undefined');

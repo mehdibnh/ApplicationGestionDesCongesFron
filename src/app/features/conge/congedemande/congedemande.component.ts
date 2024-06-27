@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { CongeService } from '../services/conge.service';
 import { CongeModule } from '../Model/conge/conge.model';
 import { TypeConge } from '../Model/conge/conge.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-congedemande',
@@ -17,7 +18,11 @@ export class CongedemandeComponent {
   };
   
 
-  constructor(private congeService: CongeService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private congeService: CongeService,
+    private router: Router
+  ) { }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -30,6 +35,7 @@ export class CongedemandeComponent {
           typeConge: TypeConge.Annuel,
           certifie: false
         };
+        this.router.navigate(['/conge']);
       }, (error) => {
         console.error('Erreur lors de l\'ajout du congé', error);
       });

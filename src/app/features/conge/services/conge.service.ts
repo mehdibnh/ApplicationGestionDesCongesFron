@@ -32,5 +32,10 @@ export class CongeService {
     return this.http.put<CongeModule>(`${this.apiUrl}/refuse/${idConge}`, {});
   }
 
+  supprimeConge(idConge: number): Observable<CongeModule> {
+    return this.http.delete<CongeModule>(`${this.apiUrl}/supprimer/${idConge}`, {});
+  }
+
+
 
 }
