@@ -12,7 +12,7 @@ import { TypeConge } from '../Model/conge/conge.model';
 export class CongedemandeComponent {
   newConge: CongeModule = {
     dateDebut: new Date(), // Initialisez avec une chaîne vide pour correspondre au type 'date' dans le formulaire
-    typeConge: TypeConge.RTT,
+    typeConge: TypeConge.Annuel,
     certifie: false
   };
   
@@ -25,9 +25,9 @@ export class CongedemandeComponent {
         console.log('Congé ajouté avec succès', conge);
         form.resetForm();
         this.newConge = {
-          dateDebut: new Date (), // Réinitialisez à une chaîne vide après la soumission
+          dateDebut: new Date (), 
           dateFin: new Date (),
-          typeConge: TypeConge.RTT,
+          typeConge: TypeConge.Annuel,
           certifie: false
         };
       }, (error) => {

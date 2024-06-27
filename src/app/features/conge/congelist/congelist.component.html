@@ -33,7 +33,7 @@
             <button 
               type="button" 
               class="btn btn-warning" 
-              [routerLink]="['/congemodifier', conge.idConge]"
+              [routerLink]="['congemodifier', conge.idConge]"
               [disabled]="conge.statut !== 'enattente'">
               Modifier
             </button>

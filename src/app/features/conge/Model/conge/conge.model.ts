@@ -13,13 +13,16 @@ export interface CongeModule {
 }
 export enum Statut {
   EnAttente = 'enattente',
-  Approuve = 'approuve',
-  Refuse = 'refuse'
+  Accepter = 'accepter',
+  Refuse = 'refuser' , 
+  Annuler = 'annuler'
 }
 
  export enum TypeConge {
-  RTT = 'rtt',
-  CongesPayes = 'congespayes',
+  Annuel = 'annuel',
   Maladie = 'maladie',
-  SansSolde = 'sanssolde'
-}
+  SansSolde = 'sanssolde',
+  Maternite = 'maternite',
+  Paternite = 'paternite',
+  Sabbatique= 'sabbatique'
+  }

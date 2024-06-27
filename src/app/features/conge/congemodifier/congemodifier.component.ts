@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CongeService } from '../services/conge.service';
-import { CongeModule } from '../Model/conge/conge.model';
+import { CongeModule, TypeConge } from '../Model/conge/conge.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-congemodifier',
@@ -9,8 +10,13 @@ import { CongeModule } from '../Model/conge/conge.model';
   styleUrls: ['./congemodifier.component.scss']
 })
 export class CongemodifierComponent implements OnInit {
-  conge: CongeModule = {} as CongeModule;
-  id!: number;
+  conge: CongeModule = {
+    dateDebut: new Date(),
+    dateFin: new Date(),
+    typeConge: TypeConge.Annuel,
+    certifie: false
+  };
+  congeId!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,15 +25,29 @@ export class CongemodifierComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.params['id']; // Convertir l'ID en nombre
-    this.congeService.recupererCongeParId(this.id).subscribe(data => {
-      this.conge = data;
-    }, error => console.log(error));
+    this.congeId = +this.route.snapshot.params['id'];
+    if (isNaN(this.congeId)) {
+      console.error('Invalid congeId');
+      return;
+    }
+    this.recupererConge();
   }
 
-  onSubmit(): void {
-    this.congeService.modifierConge(this.id, this.conge).subscribe(data => {
-      this.router.navigate(['/']);
-    }, error => console.log(error));
+  recupererConge(): void {
+    this.congeService.recupererCongeParId(this.congeId).subscribe(data => {
+      this.conge = data;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  onSubmit(form: NgForm): void {
+    if (form.valid) {
+      this.congeService.modifierConge(this.congeId, this.conge).subscribe(() => {
+        this.router.navigate(['/']);
+      }, error => {
+        console.log(error);
+      });
+    }
   }
 }
