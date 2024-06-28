@@ -10,6 +10,12 @@ export interface Employee {
   equipe: string;
   manager: string;
   soldeConges: number;
+  Role: Role;
+}
+export enum Role {
+  Employee = 'Employee',
+  Manager = 'Manager',
+  Admin = 'Admin'
 }
 export enum Typeconge {
     Maladie = 'Maladie',

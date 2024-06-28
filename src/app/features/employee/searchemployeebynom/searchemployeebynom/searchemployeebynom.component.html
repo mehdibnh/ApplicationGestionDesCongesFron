@@ -1,11 +1,20 @@
-<h3>Search Employee by Name</h3>
-<form [formGroup]="searchForm" (ngSubmit)="searchEmployeeByName()">
-  <div class="form-group">
-    <label for="nom">Nom</label>
-    <input id="nom" formControlName="nom" class="form-control" />
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h3 class="text-center mb-4">Search Employee by Name</h3>
+      <form [formGroup]="searchForm" (ngSubmit)="searchEmployeeByName()" class="shadow p-4 rounded bg-light">
+        <div class="form-group mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input id="nom" formControlName="nom" class="form-control" />
+        </div>
+        <div class="d-grid">
+          <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </div>
+      </form>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary">Search</button>
-</form>
+</div>
+
 
 <div *ngIf="searchResults">
   <h3>Search Results</h3>

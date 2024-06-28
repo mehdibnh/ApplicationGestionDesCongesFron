@@ -1,10 +1,11 @@
-<div>
-    <button [routerLink]="['add']" class="btn btn-primary">Create Employee</button>
-    <button [routerLink]="['search']" class="btn btn-primary">Search Employee by id</button>
-    <button [routerLink]="['searchByNom']" class="btn btn-primary">Search Employee by nom</button>
-    <button (click)="getAllEmployees()" class="btn btn-primary">All Employees</button>
-  </div>
-  
+<div class="d-flex justify-content-center">
+  <button [routerLink]="['add']" class="btn btn-primary mx-4">Create Employee</button>
+  <button [routerLink]="['search']" class="btn btn-primary mx-4">Search Employee by id</button>
+  <button [routerLink]="['searchByNom']" class="btn btn-primary mx-4">Search Employee by nom</button>
+  <button (click)="getAllEmployees()" class="btn btn-primary mx-4">All Employees</button>
+</div>
+
+
   <div *ngIf="showEmployees">
     <div *ngFor="let employee of listEmployees">
       <div class="card">
@@ -16,8 +17,10 @@
           <p class="card-text">Solde de Conge : {{ employee.soldeConges }}</p>
           <p class="card-text">Equipe : {{ employee.equipe }}</p>
           <p class="card-text">Manager : {{ employee.manager }}</p>
-          <button (click)="deleteEmployee(employee.idEmployee)" class="btn btn-danger">Delete</button>
+          <button (click)="deleteEmployee(employee.idEmployee)" class="btn btn-danger me-4">Delete</button>
           <button (click)="editEmployee(employee)" class="btn btn-warning">Edit</button>
+
+
           <div *ngIf="editingEmployee">
             <h3>Edit Employee</h3>
             <form [formGroup]="editForm" (ngSubmit)="updateEmployee()">

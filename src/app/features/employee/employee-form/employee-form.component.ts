@@ -19,6 +19,7 @@ export class EmployeeFormComponent {
       password: ['', Validators.required],
       equipe: ['', Validators.required],
       manager: ['', Validators.required],
+      Role : ['', Validators.required],
       soldeConges: [0, [Validators.required, Validators.min(0)]]
     });
   }
