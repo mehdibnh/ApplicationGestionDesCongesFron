@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Employee } from '../model/Employee.model';
+import { Employee, Role } from '../model/Employee.model';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -22,7 +22,8 @@ export class EmployeeListComponent {
       password: ['', Validators.required],
       equipe: ['', Validators.required],
       manager: ['', Validators.required],
-      soldeConges: [0, [Validators.required, Validators.min(0)]]
+      soldeConges: [0, [Validators.required, Validators.min(0)]], // Corrected parenthesis
+      Role: ['', Validators.required],
     });
   }
 
@@ -39,6 +40,7 @@ export class EmployeeListComponent {
       console.error('Error fetching employees:', error);
     });
   }
+
   getEmployeeByName(nom: string): void {
     this.employeeService.getEmployeeByName(nom).subscribe(data => {
       console.log(data);
@@ -85,5 +87,3 @@ export class EmployeeListComponent {
     this.editForm.reset();
   }
 }
-
-
