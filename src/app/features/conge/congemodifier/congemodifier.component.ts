@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class CongemodifierComponent implements OnInit {
   conge: CongeModule = {
+    dateDebut: new Date(),
+    dateFin: new Date(),
     typeConge: TypeConge.Annuel,
     certifie: false
   };
@@ -47,6 +49,7 @@ export class CongemodifierComponent implements OnInit {
       if (this.conge.dateFin) {
         this.conge.dateFin = new Date(this.conge.dateFin);
       }
+      console.log(this.conge.dateDebut)
   
       // Formater les dates pour l'affichage
       this.formattedDateDebut = this.conge.dateDebut ? this.formatDate(this.conge.dateDebut) : '';
