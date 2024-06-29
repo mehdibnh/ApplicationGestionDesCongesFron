@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Employee, Role } from '../model/Employee.model';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.scss']
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit, OnDestroy {
   listEmployees: Employee[] = [];
   showEmployees: boolean = false;
   editForm: FormGroup;
   editingEmployee: Employee | null = null;
+  pollingSubscription: Subscription = new Subscription();
 
   constructor(private employeeService: EmployeeService, private fb: FormBuilder) {
     this.editForm = this.fb.group({
@@ -22,13 +24,24 @@ export class EmployeeListComponent {
       password: ['', Validators.required],
       equipe: ['', Validators.required],
       manager: ['', Validators.required],
-      soldeConges: [0, [Validators.required, Validators.min(0)]], // Corrected parenthesis
+      soldeConges: [0, [Validators.required, Validators.min(0)]],
       Role: ['', Validators.required],
     });
   }
 
   ngOnInit() {
-    // Initialisation si nécessaire
+    this.getAllEmployees();
+
+    // Polling every 5 seconds
+    this.pollingSubscription = interval(50000).subscribe(() => {
+      this.getAllEmployees();
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.pollingSubscription) {
+      this.pollingSubscription.unsubscribe();
+    }
   }
 
   getAllEmployees() {
@@ -56,6 +69,7 @@ export class EmployeeListComponent {
   createEmployee(employee: Employee): void {
     this.employeeService.createEmployee(employee).subscribe(data => {
       console.log(data);
+      this.getAllEmployees();
     });
   }
 
@@ -69,7 +83,7 @@ export class EmployeeListComponent {
       const updatedEmployee = { ...this.editingEmployee, ...this.editForm.value };
       this.employeeService.updateEmployee(this.editingEmployee.idEmployee, updatedEmployee).subscribe(data => {
         console.log(data);
-        this.getAllEmployees(); // Refresh the list
+        this.getAllEmployees();
         this.cancelEdit();
       });
     }
@@ -79,6 +93,7 @@ export class EmployeeListComponent {
     this.employeeService.deleteEmployee(id).subscribe(data => {
       console.log(data);
       this.listEmployees = this.listEmployees.filter(emp => emp.idEmployee !== id);
+      this.getAllEmployees();
     });
   }
 

@@ -15,20 +15,18 @@
   </div>
 </div>
 
-  
-  <div *ngIf="employee">
-    <h2>Employee Details</h2>
-    <p><strong>Surname:</strong> {{ employee.nom}}</p>
-    <p><strong>Name:</strong> {{ employee.prenom }}</p>
-    <p><strong>Salary:</strong> {{ employee.salaire }}</p>
-    <p><strong>Password:</strong> {{ employee.password }}</p>
-    <p><strong>Team:</strong> {{ employee.equipe }}</p>
-    <p><strong>Manager:</strong> {{ employee.manager }}</p>
-    <p><strong>Leave Balance:</strong> {{ employee.soldeConges }}</p>
-    <p><strong>Role:</strong>{{employee.Role}}</p>
-  </div>
-  
-  <div *ngIf="employee === undefined && searchForm.valid">
-    <p>Employee not found</p>
-  </div>
-  
+<div *ngIf="employee !== null">
+  <h2>Employee Details</h2>
+  <p><strong>Surname:</strong> {{ employee.nom}}</p>
+  <p><strong>Name:</strong> {{ employee.prenom }}</p>
+  <p><strong>Salary:</strong> {{ employee.salaire }}</p>
+  <p><strong>Password:</strong> {{ employee.password }}</p>
+  <p><strong>Team:</strong> {{ employee.equipe }}</p>
+  <p><strong>Manager:</strong> {{ employee.manager }}</p>
+  <p><strong>Leave Balance:</strong> {{ employee.soldeConges }}</p>
+  <p><strong>Role:</strong>{{employee.Role}}</p>
+</div>
+
+<div *ngIf="employee === null && searchAttempted">
+  <p>Employee not found</p>
+</div>
