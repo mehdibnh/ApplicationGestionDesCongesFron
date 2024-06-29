@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Employee, Role } from '../model/Employee.model';
+import { Employee } from '../model/Employee.model';
 import { EmployeeService } from '../employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription, interval } from 'rxjs';
@@ -30,6 +30,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    
     this.getAllEmployees();
 
     // Polling every 5 seconds

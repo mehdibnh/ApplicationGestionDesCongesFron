@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
-import { Employee } from '../model/Employee.model';
+import { Employee} from '../model/Employee.model';
 
 @Component({
   selector: 'app-search-employee-by-id',
@@ -25,6 +25,7 @@ export class SearchEmployeeByIdComponent {
     this.employeeService.getEmployeeById(id).subscribe(
       data => {
         this.employee = data;
+        console.log(data);
       },
       error => {
         console.error('Error fetching employee:', error);
