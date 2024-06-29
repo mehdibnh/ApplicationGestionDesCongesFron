@@ -33,7 +33,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.getAllEmployees();
 
     // Polling every 5 seconds
-    this.pollingSubscription = interval(50000).subscribe(() => {
+    this.pollingSubscription = interval(10000).subscribe(() => {
       this.getAllEmployees();
     });
   }
