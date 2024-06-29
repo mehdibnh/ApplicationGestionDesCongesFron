@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class CongemodifierComponent implements OnInit {
   conge: CongeModule = {
-    dateDebut: new Date(),
-    dateFin: new Date(),
     typeConge: TypeConge.Annuel,
     certifie: false
   };
@@ -41,9 +39,19 @@ export class CongemodifierComponent implements OnInit {
   recupererConge(): void {
     this.congeService.recupererCongeParId(this.congeId).subscribe(data => {
       this.conge = data;
-      // Format the dates for the form
+  
+      // Vérifier si les dates sont définies
+      if (this.conge.dateDebut) {
+        this.conge.dateDebut = new Date(this.conge.dateDebut);
+      }
+      if (this.conge.dateFin) {
+        this.conge.dateFin = new Date(this.conge.dateFin);
+      }
+  
+      // Formater les dates pour l'affichage
       this.formattedDateDebut = this.conge.dateDebut ? this.formatDate(this.conge.dateDebut) : '';
       this.formattedDateFin = this.conge.dateFin ? this.formatDate(this.conge.dateFin) : '';
+  
       this.loading = false;
       console.log('Conge data loaded:', this.conge);
     }, error => {
@@ -51,7 +59,7 @@ export class CongemodifierComponent implements OnInit {
       this.loading = false;
     });
   }
-
+  
   formatDate(date: Date): string {
     const d = new Date(date);
     let month = '' + (d.getMonth() + 1);

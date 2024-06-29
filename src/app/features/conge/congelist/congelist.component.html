@@ -12,7 +12,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Type de Congé</th>
           <th>Date de Début</th>
           <th>Date de Fin</th>
@@ -26,7 +25,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let conge of conges">
-          <td></td>
           <td>{{ conge.typeConge }}</td>
           <td>{{ conge.dateDebut | date: 'longDate' }}</td>
           <td>{{ conge.dateFin | date: 'longDate' }}</td>
