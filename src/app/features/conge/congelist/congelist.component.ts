@@ -15,7 +15,14 @@ export class CongelistComponent implements OnInit {
 
   ngOnInit(): void {
     this.congeService.recupererListeConge().subscribe(data => {
-      this.conges = data;
+      this.conges = data.sort((a, b) => {
+        if (a.statut === 'enattente' && b.statut !== 'enattente') {
+          return -1;
+        } else if (a.statut !== 'enattente' && b.statut === 'enattente') {
+          return 1;
+        }
+        return 0;
+      });
     });
   }
 
