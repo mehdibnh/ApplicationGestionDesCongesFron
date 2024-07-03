@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h3 class="text-center mb-4">Search Employee by Name and Surname</h3>
+        <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="shadow p-4 rounded bg-light">
+          <div class="form-group mb-3">
+            <label for="prenom" class="form-label">First Name</label>
+            <input id="prenom" formControlName="prenom" type="text" class="form-control" />
+          </div>
+          <div class="form-group mb-3">
+            <label for="nom" class="form-label">Last Name</label>
+            <input id="nom" formControlName="nom" type="text" class="form-control" />
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="employee !== null">
+    <h2>Employee Details</h2>
+    <p><strong>Surname:</strong> {{ employee.nom }}</p>
+    <p><strong>Name:</strong> {{ employee.prenom }}</p>
+    <p><strong>Salary:</strong> {{ employee.salaire }}</p>
+    <p><strong>Password:</strong> {{ employee.password }}</p>
+    <p><strong>Team:</strong> {{ employee.equipe }}</p>
+    <p><strong>Manager:</strong> {{ employee.manager }}</p>
+    <p><strong>Leave Balance:</strong> {{ employee.soldeConges }}</p>
+    <p><strong>Role:</strong>{{ employee.role }}</p>
+  </div>
+  
+  <div *ngIf="employee === null && searchAttempted">
+    <p>Employee not found</p>
+  </div>
+  

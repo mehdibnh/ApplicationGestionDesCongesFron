@@ -21,6 +21,14 @@ export class EmployeeService {
   getEmployeeByName(nom: string): Observable<Employee> {
     return this.http.get<Employee>(`${this.apiUrl}/search?nom=${nom}`);
   }
+  getEmployeeByNameSurname(prenom: string, nom: string): Observable<Employee> {
+    const params = { prenom, nom };
+    return this.http.get<Employee>(`${this.apiUrl}/search`, { params });
+  }
+  getEmployeeByPoste(role: string): Observable<Employee> {
+    const params = { role };
+    return this.http.get<Employee>(`${this.apiUrl}/searchByPoste`, { params });
+  }
   
 
 
