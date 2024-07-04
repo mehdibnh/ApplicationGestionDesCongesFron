@@ -7,16 +7,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { EquipeFormuleComponent } from './equipe-formule/equipe-formule.component';
 import { EquipeRoutingModule } from './equipe-routing.module';
+
+import { DepartementModule } from '../departement/departement.module';
 @NgModule({
   declarations: [
-    
+   
   
-    EquipeFormuleComponent
+   
   ],
   imports: [
     CommonModule,
     EquipeRoutingModule,
     FormsModule,
+    DepartementModule,
     
     CalendarModule.forRoot({
       provide: DateAdapter,

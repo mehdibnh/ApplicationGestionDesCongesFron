@@ -10,9 +10,12 @@ import { TopSelling } from 'src/app/component/table/table-data';// Assurez-vous 
 const FILTER_PAG_REGEX = /[^0-9]/g;
 
 
+
 @Component({
   selector: 'app-equipe',
   templateUrl: './equipe.component.html',
+  standalone: true,
+  imports: [NgbPaginationModule, NgIf, NgFor],
   styleUrls: ['./equipe.component.scss']
 })
 export class EquipeComponent {
@@ -50,7 +53,9 @@ export class EquipeComponent {
   constructor(private router: Router) { }
 
   navigateToForm() {
-    this.router.navigate(['/component/pagination/formulaire-equipe']);
+    this.router.navigate(['/equipe/formule']);
   }
+
+  
 
 }

@@ -16,5 +16,8 @@ export class DepartementService {
     return this.http.post<DepartementModule>(`${this.apiUrl}/ajouter`, departement);
   }
 
-  // Vous pouvez ajouter d'autres méthodes pour récupérer, mettre à jour ou supprimer des départements ici
-}
+  private apiUrl1 = 'http://localhost:8089/departemment/liste';
+
+    getDepartments(): Observable<DepartementModule[]> {
+        return this.http.get<DepartementModule[]>(this.apiUrl1);
+}}
