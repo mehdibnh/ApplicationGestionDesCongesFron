@@ -36,6 +36,10 @@ export class CongeService {
     return this.http.delete<CongeModule>(`${this.apiUrl}/supprimer/${idConge}`, {});
   }
 
+  recupererListeCongeenvoyerparunemployer(idemployer: number): Observable<CongeModule> {
+    return this.http.delete<CongeModule>(`${this.apiUrl}/recupererListeCongeenvoyerparunemployer/${idemployer}`, {});
+  }
+
 
 
 }
