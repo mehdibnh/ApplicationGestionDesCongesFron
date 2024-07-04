@@ -10,6 +10,7 @@ import { CongeModule } from '../Model/conge/conge.model';
 })
 export class CongelistComponent implements OnInit {
   conges: CongeModule[] = [];
+  searchId: number | undefined;
 
   constructor(private congeService: CongeService, private router: Router) { }
 
@@ -57,6 +58,19 @@ supprime(idConge: number | undefined): void {
     console.error('idConge is undefined');
   }
 }
+
+chercherConge(): void {
+  if (this.searchId !== undefined) {
+    this.congeService.recupererCongeParId(this.searchId).subscribe(conge => {
+      this.conges = [conge];
+    }, error => {
+      console.error('Erreur lors de la recherche du congé', error);
+    });
+  } else {
+    console.error('ID de recherche non défini');
+  }
+}
+
 }
 
 

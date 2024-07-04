@@ -8,6 +8,9 @@
     </div>
   </div>
 
+  <!-- Zone de recherche -->
+ 
+
   <div *ngIf="conges.length > 0; else noConges">
     <table class="table">
       <thead>
@@ -17,10 +20,10 @@
           <th>Date de Fin</th>
           <th>Nombre des jour(s)</th>
           <th>Status</th>
-          <th>Accecpter</th>
+          <th>Accepter</th>
           <th>Modifier</th>
           <th>Refuser</th>
-          <th>Supprime</th>
+          <th>Supprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -30,10 +33,10 @@
           <td>{{ conge.dateFin | date: 'longDate' }}</td>
           <td>{{ conge.nombreDeJours }}</td>
           <td>{{ conge.statut }}</td>
-          <td><button *ngIf="conge.idConge !== undefined"type="button" class="btn btn-success" (click)="accepterConge(conge.idConge)"   [disabled]="conge.statut !== 'enattente'">Accecpter</button></td>
-          <td><button *ngIf="conge.idConge !== undefined"type="button" class="btn btn-primary" [routerLink]="['congemodifier', conge.idConge]"[disabled]="conge.statut !== 'enattente'">Modifier</button></td>
-          <td><button *ngIf="conge.idConge !== undefined"type="button" class="btn btn-warning" (click)="refuseConge(conge.idConge)"[disabled]="conge.statut !== 'enattente'">Refuser</button></td>
-          <td><button *ngIf="conge.idConge !== undefined"type="button" class="btn btn-danger" (click)="supprime(conge.idConge)"[disabled]="conge.statut !== 'enattente'">Supprime</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-success" (click)="accepterConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Accepter</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-primary" [routerLink]="['congemodifier', conge.idConge]" [disabled]="conge.statut !== 'enattente'">Modifier</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-warning" (click)="refuseConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Refuser</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-danger" (click)="supprime(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Supprimer</button></td>
         </tr>
       </tbody>
     </table>
