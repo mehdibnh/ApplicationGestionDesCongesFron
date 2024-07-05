@@ -34,7 +34,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.getAllEmployees();
 
     // Polling every 10 seconds
-    this.pollingSubscription = interval(10000).subscribe(() => {
+    this.pollingSubscription = interval(5000).subscribe(() => {
       this.getAllEmployees();
     });
   }
@@ -52,7 +52,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       this.showEmployees = true;
     }, error => {
       console.error('Error fetching employees:', error);
-    });
+     });
   }
 
   getEmployeeByName(nom: string): void {
