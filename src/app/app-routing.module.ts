@@ -1,39 +1,44 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { FullComponent } from './layouts/full/full.component';
-
-export const Approutes: Routes = [
+import { Page404Component } from './authentication/page404/page404.component';
+import { AuthGuard } from './core/guard/auth.guard';
+import { Role } from './models/role';
+import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
+const routes: Routes = [
   {
     path: '',
-    component: FullComponent,
+   // canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      //{ path: '', redirectTo: '/authentication/signin', pathMatch: 'full' },
+      /*{
+        path: 'admin',
+       // canActivate: [AuthGuard],
+        data: {
+          role: Role.Admin,
+        },
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+      },*/
+
+
       {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+        path: 'ui',
+        loadChildren: () => import('./ui/ui.module').then((m) => m.UiModule),
       },
-      {
-        path: 'about',
-        loadChildren: () => import('./about/about.module').then(m => m.AboutModule)
-      },
-      {
-        path: 'component',
-        loadChildren: () => import('./component/component.module').then(m => m.ComponentsModule)
-      },
-      {
-        path: 'event',
-        loadChildren: () => import('./features/event/event.module').then(m => m.EventModule)
-      },
-      {
-        path: 'employee',
-        loadChildren: () => import('./features/employee/employee.module').then(m => m.EmployeeModule)
-        
-      }
-    ]
+    ],
   },
   {
-    path: '**',
-    redirectTo: '/starter'
-  }
+    path: 'authentication',
+    component: AuthLayoutComponent,
+    loadChildren: () =>
+      import('./authentication/authentication.module').then(
+        (m) => m.AuthenticationModule
+      ),
+  },
+  { path: '**', component: Page404Component },
 ];
+@NgModule({
+  imports: [RouterModule.forRoot(routes, {})],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

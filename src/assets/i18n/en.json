@@ -1,0 +1,78 @@
+{
+    "MENUITEMS": {
+        "MAIN": {
+            "TEXT": "Main"
+        },
+        "DASHBOARD": {
+            "TEXT": "Dashboard",
+            "LIST": {
+                "DASHBOARD1": "Dashboard 1",
+                "DASHBOARD2": "Dashboard 2"
+            }
+        },
+        "TEAM": {
+            "TEXT": "Teams"
+        },
+        "EMPLOYEES": {
+            "TEXT": "Employees"
+        },
+        "CLIENTS": {
+            "TEXT": "Clients",
+            "LIST": {
+                "ALL-CLIENTS": "All Clients",
+                "ADD-CLIENT": "Add Client",
+                "EDIT-CLIENT": "Edit Client"
+            }
+        },
+        "REPORTS": {
+            "TEXT": "Reports",
+            "LIST": {
+                "LEAVE_REPORT": "Leave Report",
+                "EXPENSE_REPORT": "Expense Report"
+            }
+        },
+        "EMPLOYEE": {
+            "DASHBOARD": "Dashboard",
+            "ATTENDANCE": "Attendance",
+            "MY-LEAVES": "My Leaves",
+            "MYTEAM": "My Team",
+            "MYPROJECTS": "My Projects",
+            "MYTASKS": "My Tasks",
+            "SETTINGS": "Settings",
+            "CHAT": "Chat"
+        },
+        "LEAVES": {
+            "TEXT": "Leave Management",
+            "LIST": {
+                "LEAVE-REQUESTS": "All Leave Requests",
+                "LEAVE-BALANCE": "Leave Balance",
+                "LEAVE-TYPES": "Leave Types"
+            }
+        },
+        "HOLIDAYS": {
+            "TEXT": "Holidays",
+            "LIST": {
+                "ALL-HOLIDAYS": "All Holidays",
+                "ADD-HOLIDAY": "Add Holiday",
+                "EDIT-HOLIDAY": "Edit Holiday"
+            }
+        },
+        "ATTENDANCE": {
+            "TEXT": "Attendance",
+            "LIST": {
+                "TODAY": "Today's Attendance",
+                "EMPLOYEE": "Employee Attendance",
+                "SHEET": "Attendance Sheet"
+            }
+        },
+        "APPS": {
+            "TEXT": "Apps"
+        },
+        "CALENDAR": {
+            "TEXT": "Calendar"
+        },
+        "CONTACTS": {
+            "TEXT": "Contacts"
+        }
+    }
+}

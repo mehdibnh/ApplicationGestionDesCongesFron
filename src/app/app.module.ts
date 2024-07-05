@@ -1,54 +1,58 @@
+import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  CommonModule, LocationStrategy,
-  PathLocationStrategy
-} from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { Routes, RouterModule } from '@angular/router';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { FullComponent } from './layouts/full/full.component';
-
-
-import { NavigationComponent } from './shared/header/navigation.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-
-import { Approutes } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SpinnerComponent } from './shared/spinner.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
+import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
+import { ErrorInterceptor } from './core/interceptor/error.interceptor';
+import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CoreModule } from '@core';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent,
+    PageLoaderComponent,
+    AuthLayoutComponent,
   ],
   imports: [
-    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
+    AppRoutingModule,
     HttpClientModule,
-    NgbModule,
-    RouterModule.forRoot(Approutes, { useHash: false}),
-    FullComponent,
-    NavigationComponent,
-    SidebarComponent,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgScrollbarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+    LoadingBarRouterModule,
+    // core & shared
+    CoreModule,
   ],
   providers: [
-    {
-      provide: LocationStrategy,
-      useClass: PathLocationStrategy
-    },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

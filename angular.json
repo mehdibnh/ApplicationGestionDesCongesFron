@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "monster-angular-lite": {
+    "main": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,11 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "ng-apexcharts",
-              "apexcharts"
-            ],
-            "outputPath": "dist/monster-angular-lite",
+            "outputPath": "dist/main",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -29,25 +25,50 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "allowedCommonJsDependencies": [
+              "svg-gauge",
+              "echarts",
+              "chart.js",
+              "zrender/lib/svg/svg",
+              "zrender/lib/vml/vml",
+              "dragula",
+              "contra/emitter",
+              "crossvent",
+              "apexcharts",
+              "clone-deep",
+              "xlsx",
+              "fast-deep-equal",
+              "@ckeditor/ckeditor5-build-classic",
+              "sweetalert2",
+              "rfdc",
+              "bezier-easing"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/angular-calendar/css/angular-calendar.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@swimlane/ngx-datatable/index.css",
+              "./node_modules/@swimlane/ngx-datatable/themes/material.css",
+              "./node_modules/@swimlane/ngx-datatable/assets/icons.css",
               "src/assets/scss/style.scss",
+              "src/assets/scss/theme/all-themes.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/moment/min/moment.min.js",
+              "./node_modules/apexcharts/dist/apexcharts.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500mb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "6mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -63,7 +84,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -72,10 +99,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "monster-angular-lite:build:production"
+              "browserTarget": "main:build:production"
             },
             "development": {
-              "browserTarget": "monster-angular-lite:build:development"
+              "browserTarget": "main:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +110,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "monster-angular-lite:build"
+            "browserTarget": "main:build"
           }
         },
         "test": {
@@ -100,17 +127,27 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
   "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
     "analytics": false
   }
 }
