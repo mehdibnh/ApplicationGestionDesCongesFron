@@ -8,7 +8,7 @@ import { Employee } from './model/Employee.model';
   providedIn: 'root',
 })
 export class EmployeeService {
-  private apiUrl = 'http://localhost:8089/api/employees';
+  private apiUrl = 'http://localhost:8085/api/employees';
 
   constructor(private http: HttpClient) { }
 
