@@ -23,7 +23,6 @@
           <th>Accepter</th>
           <th>Modifier</th>
           <th>Refuser</th>
-          <th>Supprimer</th>
         </tr>
       </thead>
       <tbody>
@@ -36,7 +35,6 @@
           <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-success" (click)="accepterConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Accepter</button></td>
           <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-primary" [routerLink]="['congemodifier', conge.idConge]" [disabled]="conge.statut !== 'enattente'">Modifier</button></td>
           <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-warning" (click)="refuseConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Refuser</button></td>
-          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-danger" (click)="supprime(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Supprimer</button></td>
         </tr>
       </tbody>
     </table>

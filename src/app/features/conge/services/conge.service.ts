@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CongeModule } from '../Model/conge/conge.model';
 
@@ -12,14 +12,16 @@ export class CongeService {
   constructor(private http: HttpClient) { }
 
   ajouterConge(conge: CongeModule): Observable<CongeModule> {
-    return this.http.post<CongeModule>(`${this.apiUrl}/ajouter`, conge);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<CongeModule>(`${this.apiUrl}/ajouter`, conge, { headers });
   }
 
   recupererListeConge(): Observable<CongeModule[]> {
     return this.http.get<CongeModule[]>(`${this.apiUrl}/liste`); 
   }
+ 
   recupererCongeParId(id: number): Observable<CongeModule> {
-    return this.http.get<CongeModule>(`${this.apiUrl}/${id}`);
+    return this.http.get<CongeModule>(`${this.apiUrl}/recuperer/${id}`); // Assurez-vous que l'URL correspond à votre endpoint Spring Boot
   }
 
   modifierConge(id: number, conge: CongeModule): Observable<CongeModule> {

@@ -39,9 +39,12 @@ export class CongemodifierComponent implements OnInit {
   }
 
   recupererConge(): void {
+    console.log('Calling recupererConge method'); // Log
+    console.log('Conge ID:', this.congeId); // Log
     this.congeService.recupererCongeParId(this.congeId).subscribe(data => {
+      console.log('Data received:', data); // Log
       this.conge = data;
-  
+
       // Vérifier si les dates sont définies
       if (this.conge.dateDebut) {
         this.conge.dateDebut = new Date(this.conge.dateDebut);
@@ -50,7 +53,6 @@ export class CongemodifierComponent implements OnInit {
         this.conge.dateFin = new Date(this.conge.dateFin);
       }
       console.log(this.conge.dateDebut)
-  
       // Formater les dates pour l'affichage
       this.formattedDateDebut = this.conge.dateDebut ? this.formatDate(this.conge.dateDebut) : '';
       this.formattedDateFin = this.conge.dateFin ? this.formatDate(this.conge.dateFin) : '';

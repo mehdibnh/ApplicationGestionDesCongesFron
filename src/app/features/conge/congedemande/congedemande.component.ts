@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CongeService } from '../services/conge.service';
-import { CongeModule } from '../Model/conge/conge.model';
-import { TypeConge } from '../Model/conge/conge.model';
+import { CongeModule, TypeConge } from '../Model/conge/conge.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,11 +11,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CongedemandeComponent {
   newConge: CongeModule = {
-    dateDebut: new Date(), // Initialisez avec une chaîne vide pour correspondre au type 'date' dans le formulaire
+    dateDebut: new Date(),
+    dateFin: new Date(),
     typeConge: TypeConge.Annuel,
     certifie: false
   };
-  
 
   constructor(
     private route: ActivatedRoute,
@@ -30,12 +29,12 @@ export class CongedemandeComponent {
         console.log('Congé ajouté avec succès', conge);
         form.resetForm();
         this.newConge = {
-          dateDebut: new Date (), 
-          dateFin: new Date (),
+          dateDebut: new Date(), 
+          dateFin: new Date(),
           typeConge: TypeConge.Annuel,
-          certifie: false
+          certifie: false,
         };
-        this.router.navigate(['/conge']);
+        this.router.navigate(['../conge']);
       }, (error) => {
         console.error('Erreur lors de l\'ajout du congé', error);
       });
