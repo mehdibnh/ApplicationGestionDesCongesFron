@@ -1,21 +1,33 @@
-import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
+import { Component, AfterViewInit, EventEmitter, Output, OnInit } from '@angular/core';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+
 
 declare var $: any;
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports:[NgbDropdownModule],
+  imports:[NgbDropdownModule,TranslateModule],
+  styleUrls: ['./header.component.scss'],
   templateUrl: './navigation.component.html'
+  
 })
-export class NavigationComponent implements AfterViewInit {
+export class NavigationComponent implements AfterViewInit , OnInit {
+  lang:string='';
+
+  
+  ngOnInit(): void{
+    this.lang = localStorage.getItem('lang') || 'en';
+  }
   @Output() toggleSidebar = new EventEmitter<void>();
 
 
   public showSearch = false;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal ,private translateService : TranslateService) {
+
   }
 
   // This is for Notifications
@@ -112,4 +124,11 @@ export class NavigationComponent implements AfterViewInit {
   }]
 
   ngAfterViewInit() { }
+
+  changeLang(lang:any){
+    const selectedLanguage = lang.target.value;
+    localStorage.setItem('lang',selectedLanguage);
+    this.translateService.use(selectedLanguage)
+
+  }
 }

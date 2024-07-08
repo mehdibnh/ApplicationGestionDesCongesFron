@@ -9,7 +9,7 @@ import { DepartementModule } from '../departement.module';
 })
 export class DepartementFormuleComponent {
   nomDepartement: string = '';
-  descriptionDepartement: string = '';
+  descriptionDepartement: string = ''; 
   teamNumber: number | undefined;
 
   constructor(private departementService: DepartementService) {}

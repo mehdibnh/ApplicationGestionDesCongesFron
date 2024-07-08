@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="card w-100">
         <div class="p-3">
-          <h4 class="card-title mb-0">Equipes</h4>
+          <h4 class="card-title mb-0">Equipe</h4>
 
           <div class="d-flex justify-content-end p-1 button-spacing">
             <button
@@ -13,20 +13,34 @@
             >
               Add
             </button>
-            <button type="button" class="btn btn-warning ml-3">Update</button>
           </div>
 
           <div class="card-body border-top"></div>
           <div class="row">
-            <div class="col-md-8 col-lg-3" *ngFor="let blogcard of blogcards">
+            <div class="col-md-8 col-lg-3" *ngFor="let equipe of equipes">
               <div class="card">
-                <img [src]="blogcard.image" alt="blogs" class="card-img-top" />
                 <div class="card-body">
-                  <h4 class="card-title">{{ blogcard.title }}</h4>
-                  <h6 class="card-subtitle">{{ blogcard.subtitle }}</h6>
+                  <h4 class="card-title">{{ equipe.nomEquipe }}</h4>
+                  <h6 class="card-subtitle"></h6>
+                  <p class="card-text">Project: {{ equipe.projet }}</p>
+                  <p class="card-text">Department: {{ equipe.departement }}</p>
 
-                  <button type="button" class="btn btn-primary">
-                    Show More
+                  <!-- Bouton Delete -->
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="confirmDeleteEquipe(equipe)"
+                  >
+                    Delete
+                  </button>
+
+                  <!-- Bouton Update -->
+                  <button
+                    type="button"
+                    class="btn btn-warning ml-3"
+                    (click)="openUpdateModal(equipe)"
+                  >
+                    Update
                   </button>
                 </div>
               </div>
@@ -36,59 +50,211 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Teams Leaders</h4>
+</div>
 
-          <div class="table-responsive">
-            <table class="table align-middle text-nowrap">
-              <thead>
-                <tr>
-                  <th class="text-dark font-medium fs-4">Team Lead</th>
-                  <th class="text-dark font-medium fs-4">Project</th>
-                  <th class="text-dark font-medium fs-4">Status</th>
-                  <th class="text-dark font-medium fs-4">Weeks</th>
-                  <th class="text-dark font-medium fs-4">Budget</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let ts of TopSelling">
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <img
-                        [src]="ts.image"
-                        alt="user"
-                        width="45"
-                        class="rounded-circle"
-                      />
-                      <div class="ms-3">
-                        <h5 class="mb-0 font-medium">{{ ts.uname }}</h5>
-                        <span class="text-muted">{{ ts.gmail }}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="fs-4">{{ ts.productName }}</td>
-                  <td>
-                    <span
-                      class="p-2 bg-{{
-                        ts.status
-                      }} rounded-circle d-inline-block ms-3"
-                    ></span>
-                  </td>
-
-                  <td>
-                    <h5 class="mb-0 fw-normal">{{ ts.weeks }}</h5>
-                  </td>
-                  <td>
-                    <h5 class="mb-0 fw-normal">{{ ts.budget }}</h5>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+<!-- Modal de mise à jour -->
+<div
+  class="modal"
+  tabindex="-1"
+  aria-labelledby="updateModalLabel"
+  aria-hidden="true"
+  [ngClass]="{ show: isUpdateModalVisible }"
+  [ngStyle]="{ display: isUpdateModalVisible ? 'block' : 'none' }"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update Team</h5>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="closeUpdateModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="updateEquipe()">
+          <div class="mb-3">
+            <label for="nomEquipe" class="form-label">Nom de l'équipe</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nomEquipe"
+              [(ngModel)]="nomEquipeToUpdate"
+              name="nomEquipeToUpdate"
+              required
+            />
           </div>
+          <div class="mb-3">
+            <label for="nombrePersonnes" class="form-label"
+              >Nombre de personnes</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="nombrePersonnes"
+              [(ngModel)]="nombrePersonnesToUpdate"
+              name="nombrePersonnesToUpdate"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="projet" class="form-label">Nom du projet</label>
+            <input
+              type="text"
+              class="form-control"
+              id="projet"
+              [(ngModel)]="projetToUpdate"
+              name="projetToUpdate"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="departement" class="form-label">Département</label>
+            <input
+              type="text"
+              class="form-control"
+              id="departement"
+              [(ngModel)]="departementToUpdate"
+              name="departementToUpdate"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Enregistrer les modifications
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div
+  class="modal fade"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  aria-labelledby="deleteConfirmationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">
+          Confirm Team Deletion
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete team "{{ selectedEquipe?.nomEquipe }}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div
+  class="modal fade"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  aria-labelledby="deleteConfirmationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">
+          Confirm Team Deletion
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete team "{{ selectedEquipe?.nomEquipe }}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Teams Leaders</h4>
+
+        <div class="table-responsive">
+          <table class="table align-middle text-nowrap">
+            <thead>
+              <tr>
+                <th class="text-dark font-medium fs-4">Team Lead</th>
+                <th class="text-dark font-medium fs-4">Project</th>
+                <th class="text-dark font-medium fs-4">Status</th>
+                <th class="text-dark font-medium fs-4">Weeks</th>
+                <th class="text-dark font-medium fs-4">Budget</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div
+  class="modal fade"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  aria-labelledby="deleteConfirmationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel">
+          Confirm Team Deletion
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">Are you sure you want to delete this team?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
+          Confirm Delete
+        </button>
       </div>
     </div>
   </div>
