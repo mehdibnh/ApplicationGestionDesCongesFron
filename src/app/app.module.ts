@@ -27,7 +27,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,

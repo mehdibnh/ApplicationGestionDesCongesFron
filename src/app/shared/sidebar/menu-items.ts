@@ -2,8 +2,16 @@ import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
    {
-    path: '/event',
+    path: '/event/list',
     title: 'Event',
+    icon: 'bi bi-calendar-event',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/employee',
+    title: 'Employee',
     icon: 'bi bi-speedometer2',
     class: '',
     extralink: false,

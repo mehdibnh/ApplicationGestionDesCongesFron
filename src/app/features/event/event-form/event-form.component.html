@@ -1,0 +1,41 @@
+<!-- src/app/features/event/event-form/event-form.component.html -->
+<div class="event-form-container">
+  <form class="event-form" #eventForm="ngForm">
+    <button mat-raised-button color="accent" class="back-button" (click)="navigateToEventList()">
+      Voir la liste des événements
+    </button>
+
+    <mat-form-field>
+      <input matInput placeholder="Nom de l'événement" [(ngModel)]="event.nomEvent" name="nomEvent" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Date de début" [(ngModel)]="event.dateDebutEvent" name="dateDebutEvent" (dateChange)="validateDates()" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker2" placeholder="Date de fin" [(ngModel)]="event.dateFinEvent" name="dateFinEvent" (dateChange)="validateDates()">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select [(value)]="event.typeEvent" name="typeEvent" required>
+        <mat-option value="CONFERENCE">Conférence</mat-option>
+        <mat-option value="SEMINAIRE">Séminaire</mat-option>
+        <mat-option value="WEBINAIRE">Webinaire</mat-option>
+        <mat-option value="ATELIER">Atelier</mat-option>
+        <mat-option value="FORMATION">Formation</mat-option>
+        <mat-option value="TEAMBUILDING">Team Building</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="dateError" class="date-error">
+      <p>La date de fin doit être postérieure à la date de début.</p>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="submitForm()" [disabled]="eventForm.invalid || dateError">Créer l'événement</button>
+  </form>
+</div>

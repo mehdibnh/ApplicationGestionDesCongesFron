@@ -14,4 +14,5 @@ export enum TypeEvent {
   ATELIER = 'ATELIER',
   FORMATION = 'FORMATION',
   TEAMBUILDING = 'TEAMBUILDING',
+  FERIE= 'FERIE'
 }

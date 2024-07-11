@@ -7,7 +7,7 @@ import { Event } from '../models/event.model';
   providedIn: 'root',
 })
 export class EventService {
-  private baseUrl = 'http://localhost:8085/event';
+  private baseUrl = 'http://localhost:8089/event';
 
   constructor(private http: HttpClient) {}
 
@@ -23,8 +23,8 @@ export class EventService {
     return this.http.get<Event>(`${this.baseUrl}/récupérer/${idEvent}`);
   }
 
-  modifierEvent(idEvent: number, event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.baseUrl}/modifier/${idEvent}`, event);
+  modifierEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(`${this.baseUrl}/modifier`, event);
   }
 
   récupérerListeEvents(): Observable<Event[]> {
