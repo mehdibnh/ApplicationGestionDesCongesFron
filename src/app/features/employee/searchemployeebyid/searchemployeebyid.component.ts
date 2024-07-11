@@ -6,7 +6,7 @@ import { Employee } from '../model/Employee.model';
 @Component({
   selector: 'app-search-employee-by-id',
   templateUrl: './searchemployeebyid.component.html',
-  styleUrls: ['./searchemployeebyid.component.css']
+  styleUrls: ['./searchemployeebyid.component.scss']
 })
 export class SearchEmployeeByIdComponent {
   searchForm: FormGroup;
