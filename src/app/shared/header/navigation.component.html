@@ -1,68 +1,138 @@
-<!-- ============================================================== -->
-<!-- toggle and nav items -->
-<!-- ============================================================== -->
-<ul class="navbar-nav float-start me-auto">
-  <li class="nav-item">
-    <a class="nav-link waves-effect waves-dark" href="/dashboard"> dashboard </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link waves-effect waves-dark" href="/about"> About </a>
-  </li>
-  <!-- ============================================================== -->
-  <!-- create new -->
-  <!-- ============================================================== -->
-  <li class="nav-item d-none d-md-block" ngbDropdown placement="bottom-end">
-    <a href="javascript:void(0)" class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
-      Create New
-    </a>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button ngbDropdownItem>Action - 1</button>
-      <button ngbDropdownItem>Another Action</button>
-      <button ngbDropdownItem>Something else is here</button>
-    </div>
-  </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
 
-<!-- ============================================================== -->
-<!-- Scroll Bar -->
-<!-- ============================================================== -->
+        .navbar {
+            width: 100%;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 20px;
+            background-color: #009dff; /* Couleur de fond de la barre de navigation */
+            color: white; /* Couleur du texte */
+            overflow: hidden;
+        }
 
+        .navbar-nav a {
+            color: inherit; /* Hérite la couleur de la barre de navigation */
+        }
 
-<!-- ============================================================== -->
-<!-- Right side toggle and nav items -->
-<!-- ============================================================== -->
-<ul class="navbar-nav float-end">
-  <!-- ============================================================== -->
-  <!-- User profile and search -->
-  <!-- ============================================================== -->
-  <li class="nav-item" ngbDropdown placement="bottom-end">
-    <a
-      ngbDropdownToggle
-      class="nav-link waves-effect waves-dark pro-pic"
-      href="javascript:void(0)"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      <img
-        src="assets/images/users/user1.jpg"
-        alt="user"
-        class="rounded-circle"
-        width="31"
-      />
-      <span class="ms-2">Steve Jobs</span>
-    </a>
-    <div class="dropdown-menu-right" ngbDropdownMenu>
-      <a class="dropdown-item" href="javascript:void(0)"> My Profile</a>
-      <a class="dropdown-item" href="javascript:void(0)"> My Balance</a>
-      <a class="dropdown-item" href="javascript:void(0)"> Inbox</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="javascript:void(0)"> Account Setting</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="javascript:void(0)"> Logout</a>
-    </div>
-  </li>
-  <!-- ============================================================== -->
-  <!-- User profile and search -->
-  <!-- ============================================================== -->
-</ul>
+        .bonjour-container {
+            position: absolute;
+            top: 45%; /* Déplace le texte un peu plus haut */
+            transform: translateY(-50%);
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Empêche l'interaction avec le texte animé */
+        }
+
+        .bonjour-text {
+            position: absolute;
+            left: -100%;
+            white-space: nowrap;
+            font-size: 18px; /* Réduit la taille de la police */
+            color: inherit; /* Hérite la couleur de la barre de navigation */
+            animation: moveText 10s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                left: -100%;
+            }
+            50% {
+                left: 50%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <!-- ============================================================== -->
+        <!-- toggle and nav items -->
+        <!-- ============================================================== -->
+        <ul class="navbar-nav float-start me-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-dark" href="/dashboard"> dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-dark" href="/about"> About </a>
+            </li>
+            <!-- ============================================================== -->
+            <!-- create new -->
+            <!-- ============================================================== -->
+            <li class="nav-item d-none d-md-block" ngbDropdown placement="bottom-end">
+                <a href="javascript:void(0)" class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+                    Create New
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </li>
+        </ul>
+
+        <!-- ============================================================== -->
+        <!-- Scroll Bar -->
+        <!-- ============================================================== -->
+
+        <!-- ============================================================== -->
+        <!-- Right side toggle and nav items -->
+        <!-- ============================================================== -->
+        <ul class="navbar-nav float-end">
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+            <li class="nav-item" ngbDropdown placement="bottom-end">
+                <a
+                    ngbDropdownToggle
+                    class="nav-link waves-effect waves-dark pro-pic"
+                    href="javascript:void(0)"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                    <img
+                        src="assets/images/users/user1.jpg"
+                        alt="user"
+                        class="rounded-circle"
+                        width="31"
+                    />
+                    <span class="ms-2">Steve Jobs</span>
+                </a>
+                <div class="dropdown-menu-right" ngbDropdownMenu>
+                    <a class="dropdown-item" href="javascript:void(0)"> My Profile</a>
+                    <a class="dropdown-item" href="javascript:void(0)"> My Balance</a>
+                    <a class="dropdown-item" href="javascript:void(0)"> Inbox</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0)"> Account Setting</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0)"> Logout</a>
+                </div>
+            </li>
+            <!-- ============================================================== -->
+            <!-- User profile and search -->
+            <!-- ============================================================== -->
+        </ul>
+
+        <!-- Ajout du texte Bonjour -->
+        <div class="bonjour-container">
+            <span class="bonjour-text">Hello</span>
+        </div>
+    </nav>
+</body>
+</html>
