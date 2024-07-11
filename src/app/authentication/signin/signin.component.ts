@@ -52,6 +52,7 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
         .subscribe(
             (res) => {
               if (res) {
+                console.log(res)
                 setTimeout(() => {
                   const currentUser = this.authService.currentUserValue;
                   if (currentUser) {
@@ -59,7 +60,7 @@ export class SigninComponent extends UnsubscribeOnDestroyAdapter implements OnIn
                     if (role === Role.Admin) {
                       this.router.navigate(['/admin/dashboard/main']);
                     } else if (role === Role.Employee) {
-                      this.router.navigate(['/employee/dashboard']);
+                      this.router.navigate(['/admin/dashboard/main']);
                     } else {
                       this.router.navigate(['/authentication/signin']);
                     }

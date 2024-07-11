@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import {ChangePasswordService} from "../../services/change-password.service";
 import {User} from "../../models/user";
+import {SharedDataService} from "@shared/SharedDataService";
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -16,13 +17,14 @@ export class ForgotPasswordComponent implements OnInit {
   authForm!: UntypedFormGroup;
   submitted = false;
   returnUrl!: string;
-  private user: User
+  private user!: User
 
 
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
-    private router: Router, private forgotPasswordService:ChangePasswordService
+    private router: Router, private forgotPasswordService:ChangePasswordService,
+    private sharedDataService : SharedDataService
   ) {}
   ngOnInit() {
 
@@ -52,10 +54,19 @@ export class ForgotPasswordComponent implements OnInit {
     } else {
 
 
-      this.forgotPasswordService.sendChangePasswordEmail(this.user).subscribe(
+      const email = this.f['email'].value;
+
+      console.log(email)
+      this.forgotPasswordService.sendChangePasswordEmail(email).subscribe(
+
           response => {
+
             alert('Password change email sent successfully');
-            this.router.navigate(['/change-password']);
+            this.sharedDataService.setEmail(email);
+            this.router.navigate(['/authentication/change-password'], {
+
+            });
+
           },
           error => {
 
