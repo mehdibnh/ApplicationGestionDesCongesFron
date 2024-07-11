@@ -26,12 +26,20 @@ export const Approutes: Routes = [
         loadChildren: () => import('./features/event/event.module').then(m => m.EventModule)
       },
       {
-        path: 'conge',
-        loadChildren: () => import('./features/conge/conge.module').then(m => m.CongeModule)
+        path: 'departement',
+        loadChildren: () => import('./features/departement/departement.module').then(m => m.DepartementModule)
+      },
+      {
+        path: 'equipe',
+        loadChildren: () => import('./features/equipe/equipe.module').then(m => m.EquipeModule)
       },
       {
         path: 'employee',
         loadChildren: () => import('./features/employee/employee.module').then(m => m.EmployeeModule)
+      },
+      {
+        path: 'conge',
+        loadChildren: () => import('./features/conge/conge.module').then(m => m.CongeModule)
       }
     ]
   },

@@ -6,6 +6,7 @@ import { SearchEmployeeByIdComponent } from './searchemployeebyid/searchemployee
 import { SearchemployeebynomComponent } from './searchemployeebynom/searchemployeebynom/searchemployeebynom.component';
 import { SearchemployeebynameandsurnameComponent } from './searchemployeebynameandsurname/searchemployeebynameandsurname.component';
 import { SearchemployeebypostComponent } from './searchemployeebypost/searchemployeebypost.component';
+
 const routes: Routes = [
   {path: '',component: EmployeeListComponent},
   {path: 'add',component: EmployeeFormComponent},

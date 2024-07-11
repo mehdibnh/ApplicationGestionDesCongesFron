@@ -1,0 +1,45 @@
+/* Importez Bootstrap s'il n'est pas déjà importé */
+
+
+/* Définissez les styles du composant */
+.language-switcher {
+  font-family: Arial, sans-serif;
+  display: inline-block;
+  margin-right: 20px; /* Ajustez la marge au besoin */
+}
+
+/* Appliquez les images de fond basées sur les attributs data-icon */
+#language-select {
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:hover {
+    background-color: #f3f3f3;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px #66afe9;
+  }
+
+  option[data-icon] {
+    background-repeat: no-repeat;
+    background-position: 1% 50%;
+    padding-left: 30px; /* Ajustez l'espacement à gauche pour l'image */
+  }
+
+  option[data-icon='../../assets/flags/united-states.png'] {
+    background-image: url('/../../../assets/flags/united-states.png'); /* Chemin vers le drapeau des États-Unis */
+  }
+
+  option[data-icon='../../assets/flags/france.png'] {
+    background-image: url('/../../../assets/flags/france.png'); /* Chemin vers le drapeau de la France */
+  }
+}

@@ -24,6 +24,23 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     extralink: false,
     submenu: []
+  },
+
+  {
+    path: '/departement',
+    title: 'Departement',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/equipe',
+    title: 'Equipe',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
   }
   
   // {

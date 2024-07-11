@@ -10,6 +10,7 @@ import { SearchemployeebynomComponent } from './searchemployeebynom/searchemploy
 import { SearchemployeebypostComponent } from './searchemployeebypost/searchemployeebypost.component';
 import { SearchemployeebynameandsurnameComponent } from './searchemployeebynameandsurname/searchemployeebynameandsurname.component';
 
+
 @NgModule({
   declarations: [
     EmployeeListComponent,
