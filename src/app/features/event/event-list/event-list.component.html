@@ -1,39 +1,57 @@
-<!-- src/app/features/event/event-list/event-list.component.html -->
 <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="calendar-header">
-          <button mat-icon-button (click)="previousMonth()">
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-          <span>{{ viewDate | date: 'MMMM yyyy' }}</span>
-          <button mat-icon-button (click)="nextMonth()">
-            <mat-icon>chevron_right</mat-icon>
-          </button>
-        </div>
-        <mwl-calendar-month-view
-          [viewDate]="viewDate"
-          [events]="events"
-          (dayClicked)="dayClicked($event.day)">
-        </mwl-calendar-month-view>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="calendar-header">
+        
+        <button mat-icon-button (click)="previousMonth()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+        <span>{{ viewDate | date: 'MMMM yyyy' }}</span>
+        <button mat-icon-button (click)="nextMonth()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="navigateToCreateEvent()">Créer un nouvel événement</button>
+        <button mat-raised-button color="primary" (click)="navigateToSearchEvent()">Filtrer les évenements</button>
       </div>
-    </div>
-  
-    <div class="row mt-4">
-      <div class="col-md-12" *ngIf="selectedDate">
-        <h3>Events for {{ selectedDate | date: 'fullDate' }}</h3>
-        <div *ngIf="selectedDateEvents.length > 0; else noEvents">
-          <div *ngFor="let event of selectedDateEvents" class="event-details">
-            <p><strong>Name:</strong> {{ event.nomEvent }}</p>
-            <p><strong>Start Date:</strong> {{ event.dateDebutEvent | date: 'fullDate' }}</p>
-            <p><strong>End Date:</strong> {{ event.dateFinEvent | date: 'fullDate' }}</p>
-            <p><strong>Type:</strong> {{ event.typeEvent }}</p>
-          </div>
-        </div>
-        <ng-template #noEvents>
-          <p>No events for this date.</p>
-        </ng-template>
+
+      <div class="country-selector">
+        <mat-form-field>
+          <mat-select placeholder="Select a country" [(value)]="selectedCountryCode" (selectionChange)="onCountryChange($event.value)">
+            <mat-option *ngFor="let country of countries" [value]="country.countryCode">
+              {{ country.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
+
+      <mwl-calendar-month-view
+        [viewDate]="viewDate"
+        [events]="events"
+        (dayClicked)="dayClicked($event.day)">
+      </mwl-calendar-month-view>
     </div>
   </div>
-  
+
+  <div class="row mt-4" *ngIf="selectedDate">
+    <div class="col-md-12">
+      <h3>Events for {{ selectedDate | date: 'fullDate' }}</h3>
+      <div *ngIf="selectedDateEvents.length > 0; else noEvents">
+        <div class="event-details">
+          <p><strong>Name:</strong> {{ selectedDateEvents[currentEventIndex].nomEvent }}</p>
+          <p><strong>Start Date:</strong> {{ selectedDateEvents[currentEventIndex].dateDebutEvent | date: 'fullDate' }}</p>
+          <p><strong>End Date:</strong> {{ selectedDateEvents[currentEventIndex].dateFinEvent | date: 'fullDate' }}</p>
+          <p><strong>Type:</strong> {{ selectedDateEvents[currentEventIndex].typeEvent }}</p>
+          <button mat-raised-button color="primary" (click)="editEvent(selectedDateEvents[currentEventIndex].idEvent!)">Modifier</button>
+          <button mat-raised-button color="warn" (click)="deleteEvent(selectedDateEvents[currentEventIndex].idEvent!)">Supprimer</button>
+        </div>
+        <div class="navigation-buttons">
+          <button mat-button (click)="previousEvent()" [disabled]="currentEventIndex === 0">Previous</button>
+          <button mat-button (click)="nextEvent()" [disabled]="currentEventIndex === selectedDateEvents.length - 1">Next</button>
+        </div>
+      </div>
+      <ng-template #noEvents>
+        <p>No events for this date.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
