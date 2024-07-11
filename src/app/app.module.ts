@@ -20,6 +20,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { DepartementComponent } from './features/departement/departement.component';
 import { Approutes } from './app-routing.module';
 import { EmailComponent } from './Email/email/email.component';
+import { LanguageService } from './language.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [LanguageService], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }

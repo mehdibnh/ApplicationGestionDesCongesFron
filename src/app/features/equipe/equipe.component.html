@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <div class="card w-100">
         <div class="p-3">
-          <h4 class="card-title mb-0">Equipe</h4>
+          <h4 class="card-title mb-0">{{ "Equipe" | translate }}</h4>
 
           <div class="d-flex justify-content-end p-1 button-spacing">
             <button
@@ -11,7 +11,7 @@
               class="btn btn-success"
               (click)="navigateToForm()"
             >
-              Add
+              {{ "Ajouter Equipe" | translate }}
             </button>
           </div>
 
@@ -25,22 +25,24 @@
                   <p class="card-text">Project: {{ equipe.projet }}</p>
                   <p class="card-text">Department: {{ equipe.departement }}</p>
 
-                  <!-- Bouton Delete -->
+                  <!-- Bouton Delete avec icône -->
                   <button
                     type="button"
                     class="btn btn-danger"
                     (click)="confirmDeleteEquipe(equipe)"
                   >
-                    Delete
+                    <i class="bi bi-trash"></i>
+                    <!-- Icône de la corbeille de Bootstrap Icons -->
                   </button>
 
-                  <!-- Bouton Update -->
+                  <!-- Bouton Update avec icône -->
                   <button
                     type="button"
                     class="btn btn-warning ml-3"
                     (click)="openUpdateModal(equipe)"
                   >
-                    Update
+                    <i class="bi bi-pencil"></i>
+                    <!-- Icône du crayon de Bootstrap Icons -->
                   </button>
                 </div>
               </div>
@@ -64,7 +66,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel">Update Team</h5>
+        <h5 class="modal-title" id="updateModalLabel">
+          {{ "Modifier Equipe" | translate }}
+        </h5>
         <button
           type="button"
           class="btn-close"
@@ -75,7 +79,9 @@
       <div class="modal-body">
         <form (ngSubmit)="updateEquipe()">
           <div class="mb-3">
-            <label for="nomEquipe" class="form-label">Nom de l'équipe</label>
+            <label for="nomEquipe" class="form-label">
+              {{ "Nom de l'équipe " | translate }}</label
+            >
             <input
               type="text"
               class="form-control"
@@ -86,8 +92,8 @@
             />
           </div>
           <div class="mb-3">
-            <label for="nombrePersonnes" class="form-label"
-              >Nombre de personnes</label
+            <label for="nombrePersonnes" class="form-label">
+              {{ "Nombre de personnes" | translate }}</label
             >
             <input
               type="number"
@@ -99,7 +105,9 @@
             />
           </div>
           <div class="mb-3">
-            <label for="projet" class="form-label">Nom du projet</label>
+            <label for="projet" class="form-label">
+              {{ "Nom du projet" | translate }}</label
+            >
             <input
               type="text"
               class="form-control"
@@ -110,7 +118,7 @@
             />
           </div>
           <div class="mb-3">
-            <label for="departement" class="form-label">Département</label>
+            <label for="departement" class="form-label">Department</label>
             <input
               type="text"
               class="form-control"
@@ -121,13 +129,50 @@
             />
           </div>
           <button type="submit" class="btn btn-primary">
-            Enregistrer les modifications
+            {{ "Enregistrer les modifications " | translate }}
           </button>
         </form>
       </div>
     </div>
   </div>
 </div>
+<!-- Modal de confirmation de suppression -->
+<div
+  class="modal fade"
+  id="deleteConfirmationModal"
+  tabindex="-1"
+  aria-labelledby="deleteConfirmationModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteConfirmationModalLabel"></h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          {{ "Quitter" | translate }}
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ "Est vous etes sure de supprimer l'équipe" | translate }} "{{
+          selectedEquipe?.nomEquipe
+        }}"?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
+          {{ "confirmer le suppression" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal de confirmation de suppression -->
 <div
@@ -141,7 +186,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="deleteConfirmationModalLabel">
-          Confirm Team Deletion
+          {{ "confirmer le suppression" | translate }}
         </h5>
         <button
           type="button"
@@ -151,103 +196,8 @@
         ></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete team "{{ selectedEquipe?.nomEquipe }}"?
+        {{ "Est vous etes sure de supprimer l'équipe" | translate }}
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancel
-        </button>
-        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
-          Confirm Delete
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal de confirmation de suppression -->
-<div
-  class="modal fade"
-  id="deleteConfirmationModal"
-  tabindex="-1"
-  aria-labelledby="deleteConfirmationModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteConfirmationModalLabel">
-          Confirm Team Deletion
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete team "{{ selectedEquipe?.nomEquipe }}"?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Cancel
-        </button>
-        <button type="button" class="btn btn-danger" (click)="deleteEquipe()">
-          Confirm Delete
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Teams Leaders</h4>
-
-        <div class="table-responsive">
-          <table class="table align-middle text-nowrap">
-            <thead>
-              <tr>
-                <th class="text-dark font-medium fs-4">Team Lead</th>
-                <th class="text-dark font-medium fs-4">Project</th>
-                <th class="text-dark font-medium fs-4">Status</th>
-                <th class="text-dark font-medium fs-4">Weeks</th>
-                <th class="text-dark font-medium fs-4">Budget</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal de confirmation de suppression -->
-<div
-  class="modal fade"
-  id="deleteConfirmationModal"
-  tabindex="-1"
-  aria-labelledby="deleteConfirmationModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteConfirmationModalLabel">
-          Confirm Team Deletion
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">Are you sure you want to delete this team?</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancel

@@ -3,13 +3,18 @@
     <div class="col-lg-12">
       <div class="card w-100">
         <div class="p-3">
-          <h4 class="card-title mb-0">Add Team</h4>
+          <h4 class="card-title mb-0">{{ "Ajouter Equipe" | translate }}</h4>
           <div *ngIf="showAlert" class="alert alert-success" role="alert">
-            Team has been added successfully Now add team details!
+            {{
+              "L'Equipe est creé ajouter maintenant les détails de l'équipe"
+                | translate
+            }}
           </div>
           <form class="row g-3" (ngSubmit)="onSubmit()">
             <div class="col-md-6">
-              <label for="nomDepartement" class="form-label">Team Name</label>
+              <label for="nomDepartement" class="form-label">{{
+                "nom de l'équipe" | translate
+              }}</label>
               <input
                 type="text"
                 class="form-control"
@@ -21,7 +26,9 @@
               />
             </div>
             <div class="col-md-6">
-              <label for="Members" class="form-label">Members</label>
+              <label for="Members" class="form-label">{{
+                "Membres" | translate
+              }}</label>
               <input
                 type="number"
                 class="form-control"
@@ -43,14 +50,16 @@
                 [(ngModel)]="departement"
                 required
               >
-                <option value="informatique">Informatique</option>
+                <option value="informatique">Computer science</option>
                 <option value="marketing">Marketing</option>
                 <option value="finance">Finance</option>
                 <option value="hr">HR</option>
               </select>
             </div>
             <div class="col-md-6">
-              <label for="project" class="form-label">Project Names</label>
+              <label for="project" class="form-label">
+                {{ "nom de l'équipe" | translate }}
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -62,7 +71,9 @@
               />
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">Save Team</button>
+              <button type="submit" class="btn btn-primary">
+                {{ "Enregistrer Equipe" | translate }}
+              </button>
             </div>
           </form>
         </div>
@@ -77,13 +88,17 @@
     <div class="col-lg-12">
       <div class="card w-100">
         <div class="p-3">
-          <h4 class="card-title mb-0">Add Team Details</h4>
+          <h4 class="card-title mb-0">
+            {{ "Ajouter les membres de l'équipe" | translate }}
+          </h4>
           <div *ngIf="showAlerte" class="alert alert-success" role="alert">
-            Team Members has been added successfully
+            {{ " Equipe ajouté " | translate }}
           </div>
           <form class="row g-3" (ngSubmit)="saveTeamDetails()">
             <div class="col-md-6">
-              <label for="teamLead" class="form-label">Team Lead</label>
+              <label for="teamLead" class="form-label">
+                {{ "Manager" | translate }}</label
+              >
               <select
                 class="form-control"
                 id="teamLead"
@@ -99,7 +114,9 @@
               </select>
             </div>
             <div class="col-md-6">
-              <label for="teamMembers" class="form-label">Team Members</label>
+              <label for="teamMembers" class="form-label">
+                {{ "Membres de l'équipe" | translate }}
+              </label>
               <select
                 multiple
                 class="form-control"
@@ -117,7 +134,7 @@
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">
-                Save Team Details
+                {{ "Enregistrer" | translate }}
               </button>
             </div>
           </form>

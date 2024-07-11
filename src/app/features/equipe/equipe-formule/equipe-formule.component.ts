@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { DepartementService } from '../../departement/services/departement.service';
 import { EquipeService } from '../services/equipe.service';
 import { Employee } from '../../employee/model/Employee.model';
@@ -11,15 +11,19 @@ import { NgbModal, NgbModalModule, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { CommonModule } from '@angular/common';
 import * as bootstrap from "bootstrap";
 import * as $ from 'jquery';
+import { TranslateModule } from '@ngx-translate/core';
+import { NavigationComponent } from 'src/app/shared/header/navigation.component';
+import { LanguageService } from 'src/app/language.service';
 
 @Component({
   selector: 'app-equipe-formule',
   standalone: true,
-  imports: [NgbPaginationModule, NgIf, NgFor, FormsModule, NgbModalModule, CommonModule, FormsModule],
+  imports: [NgbPaginationModule, NgIf, NgFor, FormsModule, NgbModalModule, CommonModule, FormsModule,TranslateModule,NavigationComponent],
   templateUrl: './equipe-formule.component.html',
   styleUrls: ['./equipe-formule.component.scss']
 })
 export class EquipeFormuleComponent implements OnInit {
+  @ViewChild(NavigationComponent) navigationComponent!: NavigationComponent;
   nomEquipe: string = '';
   projet: string = '';
   nombrePersonnes: number | undefined;
@@ -34,6 +38,7 @@ export class EquipeFormuleComponent implements OnInit {
   departement?: string;
   managersWithoutTeam: Employee[] = [];
   membersWithoutTeam: Employee[] = [];
+  
 
   constructor(
     private equipeService: EquipeService,
@@ -168,4 +173,5 @@ export class EquipeFormuleComponent implements OnInit {
       modelDiv.style.display = 'none';
     }
   }
+  
 }

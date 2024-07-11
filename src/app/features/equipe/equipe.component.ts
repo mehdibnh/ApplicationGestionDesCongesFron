@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { EquipeService } from './services/equipe.service';
 import { EmployeeService } from '../employee/employee.service';
@@ -7,15 +7,18 @@ import { NgIf, NgFor } from '@angular/common';
 import { NgbModal, NgbModalModule, NgbModalRef } from '@ng-bootstrap/ng-bootstrap'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NavigationComponent } from 'src/app/shared/header/navigation.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-equipe',
   standalone: true,
-  imports: [ NgIf, NgFor , NgbModalModule ,CommonModule , FormsModule ],
+  imports: [ NgIf, NgFor , NgbModalModule ,CommonModule , FormsModule , NavigationComponent , TranslateModule ],
   templateUrl: './equipe.component.html',
   styleUrls: ['./equipe.component.scss']
 })
 export class EquipeComponent implements OnInit {
+  @ViewChild(NavigationComponent) navigationComponent!: NavigationComponent;
 
   equipes: EquipeModule[] = [];
   selectedEquipe: EquipeModule | undefined;

@@ -1,0 +1,31 @@
+{
+    "Team": "Equipe",
+    "Add Team": "Ajouter Equipe",
+    "Team has been added successfully Now add team details!": "L'Equipe est creé ajouter maintenant les détails de l'équipe",
+    "Team Name": "nom de l'équipe",
+    "Members": "Membres",
+    "département": "Department",
+    "Informatique": "Computer science",
+    "Marketing": "Marketing",
+    "Finance": "Finance",
+    "HR": "HR",
+    "Project Name": "Nom du projet",
+    "Save Team": "Enregistrer Equipe",
+    "Add Team Members": "Ajouter les membres de l'équipe",
+    "Team Lead": "Manager",
+    "Team Members": "Membres de l'équipe",
+    "Save": "Enregistrer",
+    "Add": "Ajouter",
+    "Delete": "Supprimer",
+    "Update": "Modifier",
+    "Update Team": "Modifier Equipe",
+    
+    "Nombre de personnes": "Number of members",
+    "Nom du projet": "Projet Name",
+    "Enregistrer les modifications": "Save modifications",
+    "Confirm Team Deletion": "Confirmer la suppression",
+    "Are you sure you want to delete team": "Est vous etes sure de supprimer l'équipe",
+    "Cancel": "Quitter",
+    "Confirm Delete": "confirmer le suppression"
+  }
+  
