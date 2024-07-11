@@ -6,7 +6,7 @@ import { EmployeeService } from '../employee.service';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
-  styleUrls: ['./employee-form.component.css']
+  styleUrls: ['./employee-form.component.scss']
 })
 export class EmployeeFormComponent {
   employeeForm: FormGroup;
@@ -17,8 +17,9 @@ export class EmployeeFormComponent {
       prenom: ['', Validators.required],
       salaire: ['', Validators.required],
       password: ['', Validators.required],
-      equipe: ['', Validators.required],
-      manager: ['', Validators.required],
+     // equipe: ['', Validators.required],
+      email: ['', Validators.required],
+      role : ['', Validators.required],
       soldeConges: [0, [Validators.required, Validators.min(0)]]
     });
   }

@@ -7,13 +7,17 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchEmployeeByIdComponent } from './searchemployeebyid/searchemployeebyid.component';
 import { SearchemployeebynomComponent } from './searchemployeebynom/searchemployeebynom/searchemployeebynom.component';
+import { SearchemployeebypostComponent } from './searchemployeebypost/searchemployeebypost.component';
+import { SearchemployeebynameandsurnameComponent } from './searchemployeebynameandsurname/searchemployeebynameandsurname.component';
 
 @NgModule({
   declarations: [
     EmployeeListComponent,
     EmployeeFormComponent,
     SearchEmployeeByIdComponent,
-    SearchemployeebynomComponent
+    SearchemployeebynomComponent,
+    SearchemployeebypostComponent,
+    SearchemployeebynameandsurnameComponent
   ],
   imports: [
     CommonModule,
