@@ -1,0 +1,40 @@
+<div class="event-search-container">
+  <div class="filters">
+    <mat-form-field>
+      <input matInput placeholder="Keyword" [(ngModel)]="keyword">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Type of Event" [(value)]="typeEvent">
+        <mat-option *ngFor="let type of typeEvents" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="startPicker" placeholder="Start Date" [(ngModel)]="startDate">
+      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+      <mat-datepicker #startPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="endPicker" placeholder="End Date" [(ngModel)]="endDate">
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="searchEvents()">Search</button>
+  </div>
+
+  <div class="events-list" *ngIf="events.length > 0">
+    <div *ngFor="let event of events" class="event-item">
+      <p><strong>{{ event.nomEvent }}</strong></p>
+      <p>Type: {{ event.typeEvent }}</p>
+      <p>Start Date: {{ event.dateDebutEvent | date }}</p>
+      <p>End Date: {{ event.dateFinEvent | date }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="events.length === 0">
+    <p>No events found.</p>
+  </div>
+</div>
