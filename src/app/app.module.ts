@@ -30,9 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SpinnerComponent,
-    EmailComponent,
-  
-    // Add other components here
+    EmailComponent
   ],
   imports: [
     BrowserModule,

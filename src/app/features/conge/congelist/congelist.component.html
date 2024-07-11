@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row my-3 align-items-center">
+    <div class="col">
+      <h2>Les Congés</h2>
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-primary" [routerLink]="['congedemande']">Envoyer une demande</button>
+    </div>
+  </div>
+
+  <!-- Zone de recherche -->
+ 
+
+  <div *ngIf="conges.length > 0; else noConges">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Type de Congé</th>
+          <th>Date de Début</th>
+          <th>Date de Fin</th>
+          <th>Nombre des jour(s)</th>
+          <th>Status</th>
+          <th>Accepter</th>
+          <th>Modifier</th>
+          <th>Refuser</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let conge of conges">
+          <td>{{ conge.typeConge }}</td>
+          <td>{{ conge.dateDebut | date: 'longDate' }}</td>
+          <td>{{ conge.dateFin | date: 'longDate' }}</td>
+          <td>{{ conge.nombreDeJours }}</td>
+          <td>{{ conge.statut }}</td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-success" (click)="accepterConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Accepter</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-primary" [routerLink]="['congemodifier', conge.idConge]" [disabled]="conge.statut !== 'enattente'">Modifier</button></td>
+          <td><button *ngIf="conge.idConge !== undefined" type="button" class="btn btn-warning" (click)="refuseConge(conge.idConge)" [disabled]="conge.statut !== 'enattente'">Refuser</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noConges>
+    <p>Pas de congés disponibles.</p>
+  </ng-template>
+</div>

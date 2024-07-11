@@ -33,13 +33,14 @@ export const Approutes: Routes = [
         path: 'equipe',
         loadChildren: () => import('./features/equipe/equipe.module').then(m => m.EquipeModule)
       },
-
       {
         path: 'employee',
         loadChildren: () => import('./features/employee/employee.module').then(m => m.EmployeeModule)
-        
+      },
+      {
+        path: 'conge',
+        loadChildren: () => import('./features/conge/conge.module').then(m => m.CongeModule)
       }
-
     ]
   },
   {

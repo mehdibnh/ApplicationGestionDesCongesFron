@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../employee.service';
-import { Employee } from '../model/Employee.model';
+import { Employee} from '../model/Employee.model';
 
 @Component({
   selector: 'app-search-employee-by-id',
@@ -10,30 +10,27 @@ import { Employee } from '../model/Employee.model';
 })
 export class SearchEmployeeByIdComponent {
   searchForm: FormGroup;
-  employee?: Employee;
+  employee: Employee | null = null;
+  searchAttempted: boolean = false;
 
   constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
     this.searchForm = this.fb.group({
-      idEmployee: ['', Validators.required]
+      idEmployee: ['', [Validators.required, Validators.min(1)]]
     });
   }
 
   onSearch() {
-    if (this.searchForm.valid) {
-      const id = this.searchForm.value.idEmployee;
-      this.employeeService.getEmployeeById(id).subscribe(
-        employee => {
-          this.employee = employee;
-          console.log('Employee found:', employee);
-        },
-        error => {
-          console.log('Employee not found');
-         this.employee = undefined;
-        }
-      );
-    } 
-    else {
-      console.log('Form is invalid');
-    }
+    this.searchAttempted = true;
+    const id = this.searchForm.value.idEmployee;
+    this.employeeService.getEmployeeById(id).subscribe(
+      data => {
+        this.employee = data;
+        console.log(data);
+      },
+      error => {
+        console.error('Error fetching employee:', error);
+        this.employee = null;
+      }
+    );
   }
 }

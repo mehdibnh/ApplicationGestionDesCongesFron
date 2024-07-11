@@ -2,8 +2,24 @@ import { RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
    {
-    path: '/event',
+    path: '/event/list',
     title: 'Event',
+    icon: 'bi bi-calendar-event',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/employee',
+    title: 'Employee',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
+  },
+  {
+    path: '/conge',
+    title: 'Conge',
     icon: 'bi bi-speedometer2',
     class: '',
     extralink: false,
@@ -26,6 +42,7 @@ export const ROUTES: RouteInfo[] = [
     extralink: false,
     submenu: []
   }
+  
   // {
   //   path: '/dashboard',
   //   title: 'Dashboard',
@@ -90,14 +107,14 @@ export const ROUTES: RouteInfo[] = [
   //   extralink: false,
   //   submenu: []
   // },
-  // {
-  //   path: '/component/table',
-  //   title: 'Table',
-  //   icon: 'bi bi-layout-split',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: []
-  // },
+   ,{
+     path: '/component/table',
+     title: 'Table',
+     icon: 'bi bi-layout-split',
+     class: '',
+     extralink: false,
+     submenu: []
+   },
   // {
   //   path: '/about',
   //   title: 'About',
