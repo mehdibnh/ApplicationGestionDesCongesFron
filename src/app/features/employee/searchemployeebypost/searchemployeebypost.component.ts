@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Employee } from '../model/Employee.model';
 import { EmployeeService } from '../employee.service';
-import { Employee} from '../model/Employee.model';
 
 @Component({
-  selector: 'app-search-employee-by-id',
-  templateUrl: './searchemployeebyid.component.html',
-  styleUrls: ['./searchemployeebyid.component.scss']
+  selector: 'app-searchemployeebypost',
+  templateUrl: './searchemployeebypost.component.html',
+  styleUrls: ['./searchemployeebypost.component.scss']
 })
-export class SearchEmployeeByIdComponent {
+export class SearchemployeebypostComponent {
   searchForm: FormGroup;
   employee: Employee | null = null;
   searchAttempted: boolean = false;
 
   constructor(private fb: FormBuilder, private employeeService: EmployeeService) {
     this.searchForm = this.fb.group({
-      idEmployee: ['', [Validators.required, Validators.min(1)]]
+      role: ['', Validators.required]
     });
   }
 
   onSearch() {
     this.searchAttempted = true;
-    const id = this.searchForm.value.idEmployee;
-    this.employeeService.getEmployeeById(id).subscribe(
+    const role = this.searchForm.value.role;
+    this.employeeService.getEmployeeByPoste(role).subscribe(
       data => {
         this.employee = data;
         console.log(data);
