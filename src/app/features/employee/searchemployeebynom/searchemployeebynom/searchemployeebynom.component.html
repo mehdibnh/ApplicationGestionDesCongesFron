@@ -1,10 +1,10 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <h3 class="text-center mb-4">Search Employee by Name</h3>
+      <h3 class="text-center mb-4">Search Employee by Last Name</h3>
       <form [formGroup]="searchForm" (ngSubmit)="searchEmployeeByName()" class="shadow p-4 rounded bg-light">
         <div class="form-group mb-3">
-          <label for="nom" class="form-label">Nom</label>
+          <label for="nom" class="form-label">Last Name</label>
           <input id="nom" formControlName="nom" class="form-control" />
         </div>
         <div class="d-grid">

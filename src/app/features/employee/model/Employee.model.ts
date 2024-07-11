@@ -1,5 +1,3 @@
-
-
 export interface Employee {
   idEmployee: number;
  // historique: Historique[];
@@ -10,11 +8,11 @@ export interface Employee {
   equipe: string;
   manager: string;
   soldeConges: number;
-  role: role;
+  role: Role;
 }
-export enum role {
-  Employee = 'EMPLOYEE',
-  Manager = 'MANAGER',
+export enum Role {
+  Leader = 'Leader',
+  Member = 'Member',
   Admin = 'ADMIN'
 }
 export enum Typeconge {
@@ -25,7 +23,6 @@ export enum Typeconge {
   export enum StatusConge {
     Cree = 'cree',
     Modifier = 'modifer',
-    Supprimer = 'supprimer'
   }
   export enum EtatConge {
       Accepte = 'accepte',

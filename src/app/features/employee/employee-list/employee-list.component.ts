@@ -25,7 +25,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       equipe: ['', Validators.required],
       manager: ['', Validators.required],
       soldeConges: [0, [Validators.required, Validators.min(0)]],
-      Role: ['', Validators.required],
+      role: ['', Validators.required],
     });
   }
 

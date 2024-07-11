@@ -55,6 +55,7 @@ export class EmployeeService {
   }
 
   updateEmployee(id: number, employee: Employee): Observable<Employee> {
+    console.log(employee)
     return this.http.put<Employee>(`${this.apiUrl}/${id}`, employee, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
