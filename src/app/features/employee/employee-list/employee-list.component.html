@@ -17,8 +17,7 @@
         <p class="card-text">Name : {{ employee.prenom }}</p>
         <p class="card-text">Salary : {{ employee.salaire }}</p>
         <p class="card-text">Leave Balance : {{ employee.soldeConges }}</p>
-        <p class="card-text">Team : {{ employee.equipe }}</p>
-        <p class="card-text">Manager : {{ employee.manager }}</p>
+        <p class="card-text">email : {{ employee.email }}</p>
         <p class="card-text">Role : {{ employee.role }}</p>
         <button (click)="deleteEmployee(employee.idEmployee)" class="btn btn-danger me-4">Delete</button>
         <button (click)="editEmployee(employee)" class="btn btn-warning">Edit</button>
@@ -42,13 +41,10 @@
               <label for="password">Password</label>
               <input id="password" formControlName="password" class="form-control" />
             </div>
+            
             <div class="form-group">
-              <label for="equipe">Team</label>
-              <input id="equipe" formControlName="equipe" class="form-control" />
-            </div>
-            <div class="form-group">
-              <label for="manager">Manager</label>
-              <input id="manager" formControlName="manager" class="form-control" />
+              <label for="email">email</label>
+              <input id="email" formControlName="email" class="form-control" />
             </div>
             <div class="form-group">
               <label for="soldeConges">Leave Balance</label>

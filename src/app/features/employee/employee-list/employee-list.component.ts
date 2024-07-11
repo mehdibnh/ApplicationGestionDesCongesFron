@@ -23,7 +23,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       salaire: ['', Validators.required],
       password: ['', Validators.required],
       equipe: ['', Validators.required],
-      manager: ['', Validators.required],
+      email: ['', Validators.required],
       soldeConges: [0, [Validators.required, Validators.min(0)]],
       role: ['', Validators.required],
     });

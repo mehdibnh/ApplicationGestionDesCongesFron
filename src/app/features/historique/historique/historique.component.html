@@ -1,0 +1,28 @@
+<div *ngIf="historiques.length">
+    <table>
+      <thead>
+        <tr>
+          <th>ID Historique</th>
+          <th>Conge ID</th>
+          <th>Employee Nom</th>
+          <th>Status Conge</th>
+          <th>Etat Conge</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let historique of historiques">
+          <td>{{ historique.idHistorique }}</td>
+          <td>{{ historique.conge?.idConge }}</td> <!-- Ajustez en fonction de la structure de votre objet Conge -->
+          <td>{{ historique.employee?.nom }}</td> <!-- Ajustez en fonction de la structure de votre objet Employee -->
+          <td>{{ historique.statusconge }}</td>
+          <td>{{ historique.etatConge }}</td>
+          <td>{{ historique.timestamp | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="!historiques.length">
+    No historiques found.
+  </div>
+  

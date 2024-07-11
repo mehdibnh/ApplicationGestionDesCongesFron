@@ -5,8 +5,8 @@ export interface Employee {
   prenom: string;
   salaire: string;
   password: string;
-  equipe: string;
-  manager: string;
+  //equipe: string;
+  email: string;
   soldeConges: number;
   role: Role;
 }
