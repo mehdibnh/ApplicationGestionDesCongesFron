@@ -16,7 +16,16 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     extralink: false,
     submenu: []
+  },
+  {
+    path: '/conge',
+    title: 'Conge',
+    icon: 'bi bi-speedometer2',
+    class: '',
+    extralink: false,
+    submenu: []
   }
+  
   // {
   //   path: '/dashboard',
   //   title: 'Dashboard',
@@ -81,14 +90,14 @@ export const ROUTES: RouteInfo[] = [
   //   extralink: false,
   //   submenu: []
   // },
-  // {
-  //   path: '/component/table',
-  //   title: 'Table',
-  //   icon: 'bi bi-layout-split',
-  //   class: '',
-  //   extralink: false,
-  //   submenu: []
-  // },
+   ,{
+     path: '/component/table',
+     title: 'Table',
+     icon: 'bi bi-layout-split',
+     class: '',
+     extralink: false,
+     submenu: []
+   },
   // {
   //   path: '/about',
   //   title: 'About',

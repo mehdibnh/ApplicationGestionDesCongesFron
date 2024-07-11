@@ -26,9 +26,12 @@ export const Approutes: Routes = [
         loadChildren: () => import('./features/event/event.module').then(m => m.EventModule)
       },
       {
+        path: 'conge',
+        loadChildren: () => import('./features/conge/conge.module').then(m => m.CongeModule)
+      },
+      {
         path: 'employee',
         loadChildren: () => import('./features/employee/employee.module').then(m => m.EmployeeModule)
-        
       }
     ]
   },
