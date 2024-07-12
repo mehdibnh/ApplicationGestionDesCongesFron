@@ -1,0 +1,39 @@
+<h2>Modifier Réclamation</h2>
+<form [formGroup]="reclamationForm" (ngSubmit)="onSubmit()" class="reclamation-edit-form">
+  <div class="form-group">
+    <label for="titre">Titre:</label>
+    <input id="titre" formControlName="titre" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="status">Statut:</label>
+    <select id="status" formControlName="status" class="form-control">
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="categorie">Catégorie:</label>
+    <input id="categorie" formControlName="categorie" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="dateCreationDate">Date de création:</label>
+    <input id="dateCreationDate" formControlName="dateCreationDate" type="date" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="dateCreationTime">Heure de création:</label>
+    <input id="dateCreationTime" formControlName="dateCreationTime" type="time" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <input id="description" formControlName="description" type="text" class="form-control">
+  </div>
+
+  <div class="form-actions">
+    <button type="button" (click)="onCancel()" class="btn btn-secondary">Annuler</button>
+    <button type="submit" [disabled]="!reclamationForm.valid" class="btn btn-primary">Enregistrer</button>
+  </div>
+</form>

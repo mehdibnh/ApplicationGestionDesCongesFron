@@ -1,0 +1,75 @@
+<div class="reclamation-list-container">
+  <h2>Liste des Réclamations</h2>
+  <button (click)="onclick()" class="btn btn-secondary">Nouvelle Réclamation</button>
+  <table class="reclamation-table">
+    <thead>
+      <tr>
+        <th (click)="sortData('idReclamation')">
+          ID
+          <span *ngIf="sortField === 'idReclamation'">
+            <span *ngIf="sortOrder === 'asc'">&uarr;</span>
+            <span *ngIf="sortOrder === 'desc'">&darr;</span>
+          </span>
+        </th>
+        <th (click)="sortData('titre')">
+          Titre
+          <span *ngIf="sortField === 'titre'">
+            <span *ngIf="sortOrder === 'asc'">&uarr;</span>
+            <span *ngIf="sortOrder === 'desc'">&darr;</span>
+          </span>
+        </th>
+        <th (click)="sortData('status')">
+          Statut
+          <span *ngIf="sortField === 'status'">
+            <span *ngIf="sortOrder === 'asc'">&uarr;</span>
+            <span *ngIf="sortOrder === 'desc'">&darr;</span>
+          </span>
+        </th>
+        <th (click)="sortData('categorie')">
+          Catégorie
+          <span *ngIf="sortField === 'categorie'">
+            <span *ngIf="sortOrder === 'asc'">&uarr;</span>
+            <span *ngIf="sortOrder === 'desc'">&darr;</span>
+          </span>
+        </th>
+        <th (click)="sortData('dateCreation')">
+          Date de création
+          <span *ngIf="sortField === 'dateCreation'">
+            <span *ngIf="sortOrder === 'asc'">&uarr;</span>
+            <span *ngIf="sortOrder === 'desc'">&darr;</span>
+          </span>
+        </th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reclamation of reclamations">
+        <td>{{ reclamation.idReclamation }}</td>
+        <td>{{ reclamation.titre }}</td>
+        <td>{{ reclamation.status }}</td>
+        <td>{{ reclamation.categorie }}</td>
+        <td>{{ reclamation.dateCreation | date:'shortDate' }}</td>
+        <td>{{ reclamation.description }}</td>
+        <td>
+          <button (click)="onEdit(reclamation)" class="btn btn-secondary">Modifier</button>
+          <button (click)="onDelete(reclamation.idReclamation)" class="btn btn-danger">Supprimer</button>
+          <button (click)="onArchive(reclamation.idReclamation)" class="btn btn-warning">Archiver</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Statistiques des Réclamations</h2>
+  <div *ngIf="statistics">
+    <h3>Total des Réclamations : {{ statistics.totalReclamations }}</h3>
+    <h3>Réclamations Archivées : {{ statistics.archivedReclamations }}</h3>
+
+    <h4>Réclamations par Catégorie :</h4>
+    <ul>
+      <li *ngFor="let category of statistics.reclamationsByCategory | keyvalue">
+        {{ category.key }} : {{ category.value }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { FullComponent } from './layouts/full/full.component';
 
-export const Approutes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: FullComponent,
@@ -24,6 +23,10 @@ export const Approutes: Routes = [
       {
         path: 'event',
         loadChildren: () => import('./features/event/event.module').then(m => m.EventModule)
+      },
+      {
+        path: 'reclamation',
+        loadChildren: () => import('./features/reclamation/reclamation.module').then(m => m.ReclamationModule)
       }
     ]
   },
@@ -32,3 +35,9 @@ export const Approutes: Routes = [
     redirectTo: '/starter'
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

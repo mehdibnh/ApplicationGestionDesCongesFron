@@ -1,0 +1,34 @@
+<div class="archived-reclamation-list-container">
+  <h2>Liste des Réclamations Archivées</h2>
+  <button (click)="exportTable()" class="btn btn-primary">Exporter</button>
+  <table class="archived-reclamation-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Statut</th>
+        <th>Catégorie</th>
+        <th>Date de création</th>
+        <th>Date d'archivage</th>
+        <th>ID Original</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let archivedReclamation of archivedReclamations">
+        <td>{{ archivedReclamation.idArchivedReclamation }}</td>
+        <td>{{ archivedReclamation.titre }}</td>
+        <td>{{ archivedReclamation.status }}</td>
+        <td>{{ archivedReclamation.categorie }}</td>
+        <td>{{ archivedReclamation.dateCreation | date:'shortDate' }}</td>
+        <td>{{ archivedReclamation.dateArchivage | date:'shortDate' }}</td>
+        <td>{{ archivedReclamation.idOriginalReclamation }}</td>
+        <td>{{ archivedReclamation.description }}</td>
+        <td>
+          <button (click)="deleteArchivedReclamation(archivedReclamation.idArchivedReclamation)" class="btn btn-danger">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
